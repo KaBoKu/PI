@@ -67,7 +67,7 @@ public class RSSYahooWether extends TemplateXML{
 
  enum YahooCodes{
 	 
-		TORNADO(0,"tornado");
+		TORNADO(0,"tornado"),TROPICAL_STORM(1,"burza tropikalna"),HURRICANE(2,"huragan"),SEVERE_THUNDERSTORMS(3,"ma³e burze");
 		private final String describe; 
 		private final int code;
 		private static  Map<Integer, YahooCodes> mapEnum;
