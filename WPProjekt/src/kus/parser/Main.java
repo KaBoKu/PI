@@ -1,14 +1,12 @@
 package kus.parser;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.math.BigDecimal;
+import java.io.InputStreamReader;
+import java.net.URL;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 
@@ -44,9 +42,22 @@ public class Main {
 		//System.out.println(a.toString());
 		KursyKeeper kk = new KursyKeeper();
 		
+		
+		
+		
 		 WeatherParser hP = new WeatherParser();
 	        System.out.println(hP.HTML());
 		
+	        String adress="http://weather.yahooapis.com/forecastrss?w=12862220&u=c";
+	        URL urlik = new URL(adress);
+	        BufferedReader br = new BufferedReader(new InputStreamReader(urlik.openStream()));
+	        String line ="", line0 = "";
+	        while((line0=br.readLine())!=null){
+	        	line+=line0;
+	        	line+="\n";
+	        }
+	        System.out.println(line);
+	        
 	}
 
 }
