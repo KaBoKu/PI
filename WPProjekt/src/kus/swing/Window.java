@@ -377,15 +377,16 @@ public class Window extends JFrame {
 
 		JPanel jplPanel = new JPanel();
 		JLabel jlbDisplay = new JLabel(text);
-
+		JLabel kupnoSprzedarz = new JLabel("kupno/sprzedarz");
+		jlbDisplay.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 26));
 		sNBP = new SwingNBPParser();
 
 		textAreal = new JTextArea(sNBP.getXML(), 5, 10);
 		textAreal.setEditable(false);
-		textAreal.setPreferredSize(new Dimension(400, 300));
+		textAreal.setPreferredSize(new Dimension(200, 300));
 		textAreal.setLineWrap(true);
-		textAreal.setFont(new Font("Verdana", Font.BOLD, 18));
-
+		textAreal.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 18));
+		textAreal.setBackground(new Color(228, 228, 226));
 		jlbDisplay.setHorizontalAlignment(JLabel.CENTER);
 		jplPanel.setLayout(gridBag);
 
@@ -405,6 +406,7 @@ public class Window extends JFrame {
 		gBC.gridx = 0;
 		gBC.gridy = 0;
 		gBC.gridwidth = 2;
+		gBC.insets = new Insets(30, 0, 0, 0);
 		gBC.anchor = GridBagConstraints.NORTH;
 
 		jplPanel.add(jlbDisplay, gBC);
@@ -412,20 +414,22 @@ public class Window extends JFrame {
 		gBC.weightx = 0.5;
 		gBC.weighty = 0.5;
 		gBC.gridx = 0;
-		gBC.gridy = 1;
+		gBC.gridy = 2;
 		gBC.gridwidth = 1;
+		gBC.insets = new Insets(0, 30, 0, 0);
 		gBC.anchor = GridBagConstraints.WEST;
 
 		jplPanel.add(textAreal, gBC);
 
 		gBC.weightx = 0.5;
 		gBC.weighty = 0.5;
-		gBC.gridx = 1;
+		gBC.gridx = 0;
 		gBC.gridy = 1;
 		gBC.gridwidth = 1;
-		gBC.anchor = GridBagConstraints.PAGE_START;
+		gBC.insets = new Insets(0, 80, 0, 0);
+		gBC.anchor = GridBagConstraints.WEST;
 
-		jplPanel.add(jButton, gBC);
+		jplPanel.add(kupnoSprzedarz, gBC);
 		return jplPanel;
 	}
 
@@ -446,7 +450,7 @@ public class Window extends JFrame {
 
 		JPanel jplPanel = new JPanel();
 		JLabel jlbDisplay = new JLabel("Pogoda");
-
+		jlbDisplay.setFont(new Font("Verdana", Font.PLAIN, 26));
 		//sNBP = new SwingNBPParser();
 
 		textAreal = new JTextArea(sWP.getXML(),5,10);//wP.HTML(), 5, 10);
@@ -454,9 +458,10 @@ public class Window extends JFrame {
 		Border br = new BevelBorder(BevelBorder.LOWERED);
 		textAreal.setBorder(br);
 		info = new JLabel(sWP.getXML());
-		textAreal.setPreferredSize(new Dimension(400, 300));
+		textAreal.setPreferredSize(new Dimension(400, 250));
+		textAreal.setBackground(new Color(228, 228, 226));
 		textAreal.setLineWrap(true);
-		textAreal.setFont(new Font("Verdana", Font.BOLD, 18));
+		textAreal.setFont(new Font("Verdana", Font.BOLD, 23));
 		jlbDisplay.setHorizontalAlignment(JLabel.CENTER);
 		jplPanel.setLayout(gridBag);
 
@@ -476,6 +481,7 @@ public class Window extends JFrame {
 		gBC.gridx = 0;
 		gBC.gridy = 0;
 		gBC.gridwidth = 2;
+		gBC.insets = new Insets(30, 0, 0, 0);
 		gBC.anchor = GridBagConstraints.NORTH;
 
 		jplPanel.add(jlbDisplay, gBC);
@@ -485,9 +491,10 @@ public class Window extends JFrame {
 		gBC.gridx = 0;
 		gBC.gridy = 1;
 		gBC.gridwidth = 1;
+		gBC.insets = new Insets(0, 0, 0, 0);
 		gBC.anchor = GridBagConstraints.WEST;
 
-		jplPanel.add(info/*textAreal*/, gBC);
+		jplPanel.add(textAreal, gBC);
 
 		gBC.weightx = 0.5;
 		gBC.weighty = 0.5;
