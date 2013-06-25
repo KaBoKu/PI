@@ -29,6 +29,7 @@ import java.util.Locale;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -62,6 +63,7 @@ public class Window extends JFrame {
 	 */
 
 	private JTextArea textAreal;
+	private JTextArea textAreaW;
 	private String www2;
 
 	JTextField name;
@@ -104,7 +106,9 @@ public class Window extends JFrame {
 
 	JCheckBox CEmail;
 	JCheckBox CSound;
-
+	
+	private SwingWeahterParser sWP;
+	private JLabel info;
 	JButton jButt;
 	protected String encodingAction;
 
@@ -452,10 +456,46 @@ public class Window extends JFrame {
 	protected JPanel createWeather() {
 		GridBagLayout gridBag = new GridBagLayout();
 		GridBagConstraints gBC = new GridBagConstraints();
-		JLabel info = null; 
+		//JLabel info = null; 
 		;// = new WeatherParser();
-		SwingWeahterParser sWP=null; 
+		//SwingWeahterParser sWP=null; 
+		String [] miasta = { "Kraków","Katowice","Warszawa","Poznañ","Szczeciñ","£ódŸ"};
+		JComboBox listaMiast = new JComboBox(miasta);
+		listaMiast.setFont(new Font("Verdana", Font.BOLD, 23));
 		
+		
+		listaMiast.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JComboBox tmpCombo = (JComboBox) e.getSource();
+				String miasto = (String) tmpCombo.getSelectedItem();
+				System.out.println(miasto);
+				if (miasto.equals("Kraków")){
+					try {
+						sWP =  new SwingWeahterParser("http://weather.yahooapis.com/forecastrss?w=12862220&u=c","windows-1250");
+					} catch (UnsupportedEncodingException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				
+				if (miasto.equals("Katowice")){
+					try {
+						sWP =  new SwingWeahterParser("http://weather.yahooapis.com/forecastrss?w=498842&u=c","windows-1250");
+					} catch (UnsupportedEncodingException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				
+				textAreaW.setText(sWP.getXML());
+			}
+			
+		});
+		
+		//JList listaMiast = new JList(miasta);
+		//JScrollPane scrollMiast = new JScrollPane(listaMiast);
 		try {
 			sWP =  new SwingWeahterParser("http://weather.yahooapis.com/forecastrss?w=12862220&u=c","windows-1250");
 		} catch (UnsupportedEncodingException e1) {
@@ -469,15 +509,15 @@ public class Window extends JFrame {
 		jlbDisplay.setFont(new Font("Verdana", Font.PLAIN, 26));
 		//sNBP = new SwingNBPParser();
 
-		textAreal = new JTextArea(sWP.getXML(),5,10);//wP.HTML(), 5, 10);
-		textAreal.setEditable(false);
+		textAreaW = new JTextArea(sWP.getXML(),5,10);//wP.HTML(), 5, 10);
+		textAreaW.setEditable(false);
 		Border br = new BevelBorder(BevelBorder.LOWERED);
-		textAreal.setBorder(br);
+		textAreaW.setBorder(br);
 		info = new JLabel(sWP.getXML());
-		textAreal.setPreferredSize(new Dimension(400, 250));
-		textAreal.setBackground(new Color(228, 228, 226));
-		textAreal.setLineWrap(true);
-		textAreal.setFont(new Font("Verdana", Font.BOLD, 23));
+		textAreaW.setPreferredSize(new Dimension(400, 250));
+		textAreaW.setBackground(new Color(228, 228, 226));
+		textAreaW.setLineWrap(true);
+		textAreaW.setFont(new Font("Verdana", Font.BOLD, 23));
 		jlbDisplay.setHorizontalAlignment(JLabel.CENTER);
 		jplPanel.setLayout(gridBag);
 
@@ -510,7 +550,7 @@ public class Window extends JFrame {
 		gBC.insets = new Insets(0, 0, 0, 0);
 		gBC.anchor = GridBagConstraints.WEST;
 
-		jplPanel.add(textAreal, gBC);
+		jplPanel.add(textAreaW, gBC);
 
 		gBC.weightx = 0.5;
 		gBC.weighty = 0.5;
@@ -519,7 +559,7 @@ public class Window extends JFrame {
 		gBC.gridwidth = 1;
 		gBC.anchor = GridBagConstraints.PAGE_START;
 
-		jplPanel.add(jButton, gBC);
+		jplPanel.add(listaMiast, gBC);
 		return jplPanel;
 	}
 
