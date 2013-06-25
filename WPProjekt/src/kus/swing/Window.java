@@ -5,14 +5,12 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Point;
-import java.awt.SplashScreen;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -52,6 +50,7 @@ import kus.eventy.strategy.StrategyMail;
 import kus.eventy.strategy.StrategySound;
 import kus.parser.SwingNBPParser;
 import kus.parser.SwingParser;
+import kus.parser.SwingWeahterParser;
 import kus.parser.WeatherParser;
 
 import com.toedter.calendar.JCalendar;
@@ -433,19 +432,28 @@ public class Window extends JFrame {
 	protected JPanel createWeather() {
 		GridBagLayout gridBag = new GridBagLayout();
 		GridBagConstraints gBC = new GridBagConstraints();
+		JLabel info = null; 
 		;// = new WeatherParser();
+		SwingWeahterParser sWP=null; 
+		
+		try {
+			sWP =  new SwingWeahterParser("http://weather.yahooapis.com/forecastrss?w=12862220&u=c","windows-1250");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		JButton jButton = new JButton("Odœwie¿");
 
 		JPanel jplPanel = new JPanel();
 		JLabel jlbDisplay = new JLabel("Pogoda");
 
-		sNBP = new SwingNBPParser();
+		//sNBP = new SwingNBPParser();
 
-		textAreal = new JTextArea(wP.HTML(), 5, 10);
+		textAreal = new JTextArea(sWP.getXML(),5,10);//wP.HTML(), 5, 10);
 		textAreal.setEditable(false);
 		Border br = new BevelBorder(BevelBorder.LOWERED);
 		textAreal.setBorder(br);
-
+		info = new JLabel(sWP.getXML());
 		textAreal.setPreferredSize(new Dimension(400, 300));
 		textAreal.setLineWrap(true);
 		textAreal.setFont(new Font("Verdana", Font.BOLD, 18));
@@ -457,8 +465,8 @@ public class Window extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String s = sNBP.getXML();
-				textAreal.setText(wP.HTML());
+				//String s = sNBP.getXML();
+				//textAreal.setText(wP.HTML());
 			}
 
 		});
@@ -479,7 +487,7 @@ public class Window extends JFrame {
 		gBC.gridwidth = 1;
 		gBC.anchor = GridBagConstraints.WEST;
 
-		jplPanel.add(textAreal, gBC);
+		jplPanel.add(info/*textAreal*/, gBC);
 
 		gBC.weightx = 0.5;
 		gBC.weighty = 0.5;

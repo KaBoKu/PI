@@ -59,11 +59,14 @@ public class Main {
 	        	line+="\n";
 	        }
 	        System.out.println(line);
-	        
+	        String linie = gURL.GURL("http://weather.yahooapis.com/forecastrss?w=12862220&u=c");
 	        RSSYahooWether p = new RSSYahooWether();
 	        String a = new String(p.xml(line, "channel", "windows-1250").getBytes(),"windows-1250");
 	        System.out.println(a);
 	        System.out.println(YahooCodes2.getDescribe(0));
+	        SwingWeahterParser swp =  new SwingWeahterParser("http://weather.yahooapis.com/forecastrss?w=12862220&u=c","windows-1250");
+	        System.out.println("=============================");
+	        System.out.println(swp.getXML());
 	
 	        
 	}
