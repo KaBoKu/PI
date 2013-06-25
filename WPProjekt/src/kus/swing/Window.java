@@ -10,17 +10,22 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.Point;
 import java.awt.SplashScreen;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.swing.ImageIcon;
@@ -30,9 +35,6 @@ import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -82,6 +84,13 @@ public class Window extends JFrame {
 	private JLabel countLabel6;
 	private JLabel countLabelabout6;
 
+	private JTabbedPane jtbExample;
+	
+	private JLabel mouseActionLabel;
+	private List<JLabel> JLabelMouseAction = new ArrayList<>();
+	private List<JTextArea> JTextAreaMouseAction = new ArrayList<>();
+	
+	
 	SwingNBPParser sNBP;
 	WeatherParser wP;
 	static Owner own;
@@ -98,29 +107,35 @@ public class Window extends JFrame {
 	JCheckBox CSound;
 
 	JButton jButt;
+	protected String encodingAction;
 
 	public static void main(String[] args) {
 		own = own.INSTANCE;
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					SplashScreen splash = SplashScreen.getSplashScreen();
+			try{
+				
+			/*	try {
+					//SplashScreen splash = SplashScreen.getSplashScreen();
 					if (splash == null)
 						System.out.println("null");
 
-					Graphics2D g = (Graphics2D) splash.createGraphics();
+					//Graphics2D g = (Graphics2D) splash.createGraphics();
 
-					Dimension dim = splash.getSize();
+					//Dimension dim = splash.getSize();
 					for (int i = 0; i < 1000; i++) {
-						g.setColor(Color.RED);
-						g.fillRect(50, 350, i / 2 - 70, 20);
-						splash.update();
-						try {
-							Thread.sleep(5);
+					//	g.setColor(Color.RED);
+						//g.fillRect(50, 350, i / 2 - 70, 20);
+						//splash.update();
+						////try {
+						//	Thread.sleep(5);
 						} catch (InterruptedException ignored) {
+						
 						}
-					}
+					}*/
+				
+				
 					Window window = new Window();
 					window.setVisible(true);
 				} catch (Exception e) {
@@ -153,18 +168,9 @@ public class Window extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// this.setDefaultLookAndFeelDecorated(true);
 
-		ImagePanel panel = new ImagePanel(
-				new ImageIcon(
-						"D:/WorkSpaceJuno/WPProjekt/src/kus/swing/134757.jpg")
-						.getImage());
-
-		JTabbedPane jtbExample = new JTabbedPane();
+	    jtbExample = new JTabbedPane();
 		JPanel jplInnerPanel1 = createWeather();
-
-		jtbExample.setBackground(Color.cyan);
-
-		jplInnerPanel1.setBackground(Color.RED);
-
+		
 		jtbExample.addTab("Pogoda", null, jplInnerPanel1, "Tab 1");
 		jtbExample.setSelectedIndex(0);
 
@@ -182,6 +188,7 @@ public class Window extends JFrame {
 
 		JPanel jplInnerPanel5 = createOwnerPanel();
 		jtbExample.addTab("Dane u¿ytkownika", null, jplInnerPanel5, "Tab 6");
+
 		JPanel jplInnerPanel6 = createCalendarPanel();
 		jtbExample.addTab("Kalendarz", null, jplInnerPanel6, "Tab 7");
 
@@ -230,9 +237,10 @@ public class Window extends JFrame {
 		GridBagConstraints gBC = new GridBagConstraints();
 		// this.setBackground(Color.black);
 		JButton jButton = new JButton("Odœwie¿");
-
+		JLabel content;
 		JPanel jplPanel = new JPanel();
 		JLabel jlbDisplay = new JLabel(text);
+		jlbDisplay.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 26));
 		SwingParser sP = null;
 		try {
 			sP = new SwingParser(www, encoding);
@@ -243,18 +251,19 @@ public class Window extends JFrame {
 		text = sP.getXML();
 		textAreal = new JTextArea(text, 5, 10);
 		textAreal.setEditable(false);
-		textAreal.setPreferredSize(new Dimension(400, 300));
+		textAreal.setPreferredSize(new Dimension(465, 530));
 		textAreal.setLineWrap(true);
+		textAreal.setBackground(new Color(228, 228, 226));
 		Border br = new BevelBorder(BevelBorder.LOWERED);
 		textAreal.setBorder(br);
-		textAreal.setFont(new Font("Verdana", Font.BOLD, 16));
+		textAreal.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 16));
 		jlbDisplay.setHorizontalAlignment(JLabel.CENTER);
 		jplPanel.setLayout(gridBag);
 		www2 = www;
 
 		JScrollPane scroll = new JScrollPane(textAreal);
-		scroll.setPreferredSize(new Dimension(400, 300));
-
+		scroll.setPreferredSize(new Dimension(570, 300));
+		encodingAction = encoding;
 		jButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -262,7 +271,7 @@ public class Window extends JFrame {
 				// TODO Auto-generated method stub
 				SwingParser sP = null;
 				try {
-					sP = new SwingParser(www2, "");
+					sP = new SwingParser(www2, encodingAction);
 				} catch (UnsupportedEncodingException eX) {
 					// TODO Auto-generated catch block
 					eX.printStackTrace();
@@ -275,12 +284,69 @@ public class Window extends JFrame {
 		});
 
 		gBC.weightx = 0.5;
-		gBC.weighty = 0.5;
+		gBC.weighty = 15;
 		gBC.gridx = 0;
 		gBC.gridy = 0;
 		gBC.gridwidth = 2;
+		gBC.insets = new Insets(30, 0, 0, 0);
 		gBC.anchor = GridBagConstraints.NORTH;
 
+		this.mouseActionLabel = jlbDisplay;
+		this.JLabelMouseAction.add(jlbDisplay);
+		this.JTextAreaMouseAction.add(textAreal);
+		jlbDisplay.addMouseListener(new MouseAdapter() {
+
+			/*
+			 * public void mousePressed(MouseEvent e){
+			 * 
+			 * System.out.println("Label");
+			 * 
+			 * }
+			 */
+			public void mouseEntered(MouseEvent e) {
+				// mouseActionLabel.setFont((new Font("Verdana", Font.ITALIC,
+				// 26)));
+				int i = jtbExample.getSelectedIndex();
+				String adres = "http://www.tvn24.pl/najwazniejsze.xml";
+				String en= "UTF-8";
+				int j=1;
+				if (i==1) {j=2;adres="http://rss.gazeta.pl/pub/rss/wiadomosci_kraj.htm";en="ISO-8859-2";}
+				JLabelMouseAction.get(JLabelMouseAction.size() - j).setFont(
+						(new Font("Verdana", Font.ITALIC, 26)));
+				jtbExample.getSelectedIndex();
+				
+				
+				
+				SwingParser sP = null;
+				try {
+					sP = new SwingParser(adres, en);
+				} catch (UnsupportedEncodingException eX) {
+					// TODO Auto-generated catch block
+					eX.printStackTrace();
+				}
+
+				String s = sP.getXML();
+				
+				
+				
+				JTextAreaMouseAction.get(JLabelMouseAction.size() - j).setText(s);
+			}
+
+			public void mouseExited(MouseEvent e) {
+				// mouseActionLabel.setFont(new Font("Verdana",
+				// Font.ROMAN_BASELINE, 26));
+				int i = jtbExample.getSelectedIndex();
+				int j=1;
+				if (i==1) j=2;
+				System.out.println(i);
+				JLabelMouseAction.get(JLabelMouseAction.size() - j).setFont(
+						(new Font("Verdana", Font.ROMAN_BASELINE, 26)));
+			}
+
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("Lablel Real clisk");
+			}
+		});
 		jplPanel.add(jlbDisplay, gBC);
 
 		gBC.weightx = 0.5;
@@ -288,7 +354,8 @@ public class Window extends JFrame {
 		gBC.gridx = 0;
 		gBC.gridy = 1;
 		gBC.gridwidth = 1;
-		gBC.anchor = GridBagConstraints.WEST;
+		gBC.insets = new Insets(0, 0, 0, 0);
+		gBC.anchor = GridBagConstraints.CENTER;
 
 		jplPanel.add(scroll/* textAreal */, gBC);
 
@@ -299,7 +366,7 @@ public class Window extends JFrame {
 		gBC.gridwidth = 1;
 		gBC.anchor = GridBagConstraints.PAGE_START;
 
-		jplPanel.add(jButton, gBC);
+		// jplPanel.add(jButton, gBC);
 		return jplPanel;
 	}
 
@@ -447,13 +514,15 @@ public class Window extends JFrame {
 		this.surname.setText("surname " + own.getSurname());
 		JPanel jplPanel = new JPanel();
 		JLabel jlbDisplay = new JLabel("U¿ytkownik");
-		/*email.setPreferredSize(new Dimension(100, 10));
-		email.setSize(100, 10);*/
+		/*
+		 * email.setPreferredSize(new Dimension(100, 10)); email.setSize(100,
+		 * 10);
+		 */
 		sNBP = new SwingNBPParser();
 
 		jlbDisplay.setHorizontalAlignment(JLabel.RIGHT);
 		// jplPanel.setLayout(gridBag);
-		//GridLayout gL = new GridLayout(6, 2, 15, 30);
+		// GridLayout gL = new GridLayout(6, 2, 15, 30);
 		jplPanel.setLayout(gridBag);
 		jButton.addActionListener(new ActionListener() {
 
@@ -482,6 +551,8 @@ public class Window extends JFrame {
 		gBC.gridy = 0;
 		gBC.gridwidth = 1;
 		gBC.anchor = GridBagConstraints.LINE_END;
+		gBC.insets = new Insets(0, 0, 0, 0);
+		// gBC.fill = GridBagConstraints.HORIZONTAL;
 		// email.setPreferredSize(preferredSize)
 		jplPanel.add(labEmail, gBC);
 
@@ -491,6 +562,7 @@ public class Window extends JFrame {
 		gBC.gridy = 0;
 		gBC.gridwidth = 1;
 		gBC.anchor = GridBagConstraints.LINE_START;
+		gBC.insets = new Insets(0, 0, 0, 40);
 		// email.setPreferredSize(preferredSize)
 		jplPanel.add(email, gBC);
 
@@ -499,6 +571,7 @@ public class Window extends JFrame {
 		gBC.gridx = 0;
 		gBC.gridy = 1;
 		gBC.gridwidth = 1;
+		gBC.insets = new Insets(0, 0, 0, 0);
 		gBC.anchor = GridBagConstraints.LINE_END;
 
 		// email.setPreferredSize(preferredSize)
@@ -518,7 +591,7 @@ public class Window extends JFrame {
 		gBC.gridx = 0;
 		gBC.gridy = 2;
 		gBC.gridwidth = 1;
-		gBC.anchor = GridBagConstraints.LINE_END;
+		gBC.anchor = GridBagConstraints.CENTER;
 
 		// email.setPreferredSize(preferredSize)
 		jplPanel.add(labSurname, gBC);
@@ -569,15 +642,15 @@ public class Window extends JFrame {
 		gBC.anchor = GridBagConstraints.LINE_START;
 
 		jplPanel.add(about, gBC);
-//
-		gBC.weightx = 0.5;
+		//
+		gBC.weightx = 15;
 		gBC.weighty = 0.5;
-		gBC.gridx = 1;
-		gBC.gridy = 1;
+		gBC.gridx = 2;
+		gBC.gridy = 2;
 		gBC.gridwidth = 1;
-		gBC.anchor = GridBagConstraints.LINE_END;
+		gBC.anchor = GridBagConstraints.CENTER;
 
-	//	jplPanel.add(jButton, gBC);
+		jplPanel.add(jButton, gBC);
 
 		return jplPanel;
 	}

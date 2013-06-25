@@ -23,12 +23,14 @@ public class RSSParser extends TemplateXML{
 				//String descrip = getTagValue("description", eElement);
 				String pubDate = getTagValue("pubDate", eElement);
 				String guid = getTagValue("guid", eElement);
+				//String descrip = getTagValue("description", eElement);
 				//System.out.println(title + " " + descrip + " " + pubDate);
 				// Zamiana przecinka na kropkê aby MySql przyjmowa³ wpisy
 				//kupno = kupno.replace(',', '.');
 				//sprzedarz = sprzedarz.replace(',', '.');
 				//System.out.println(kupno + " " + sprzedarz + " " + kod);
-				sb.append(title + /*" " + descrip + " " +*/ pubDate+"\n");
+				sb.append(title + "\n" /*+ pubDate+"\n"*/);
+				System.out.println("ende: "+sb.toString());
 				// Funkcja wpisuj¹ca do tabel wyniki z xml-a
 				// c.in(stm, kupno, sprzedarz, kod);
 				/*
