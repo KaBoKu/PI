@@ -378,6 +378,10 @@ public class Window extends JFrame {
 		JPanel jplPanel = new JPanel();
 		JLabel jlbDisplay = new JLabel(text);
 		JLabel kupnoSprzedarz = new JLabel("kupno/sprzedarz");
+		kupnoSprzedarz.setFont(new Font("Verdana", Font.ITALIC, 12));
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sDF = new SimpleDateFormat("yyyy/MM/dd");
+		JLabel data = new JLabel("<html>Kurs z dnia poprzedniego<br> Bla bla bla</html>");
 		jlbDisplay.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 26));
 		sNBP = new SwingNBPParser();
 
@@ -430,6 +434,16 @@ public class Window extends JFrame {
 		gBC.anchor = GridBagConstraints.WEST;
 
 		jplPanel.add(kupnoSprzedarz, gBC);
+		
+		gBC.weightx = 0.5;
+		gBC.weighty = 0.5;
+		gBC.gridx = 1;
+		gBC.gridy = 2;
+		gBC.gridwidth = 1;
+		gBC.insets = new Insets(0, 0, 0, 0);
+		gBC.anchor = GridBagConstraints.NORTH;
+		
+		jplPanel.add(data,gBC);
 		return jplPanel;
 	}
 
