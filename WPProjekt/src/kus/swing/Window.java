@@ -36,6 +36,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
@@ -65,7 +66,9 @@ public class Window extends JFrame {
 	private JTextArea textAreal;
 	private JTextArea textAreaW;
 	private String www2;
-
+	private JScrollPane scroll;
+	
+	
 	JTextField name;
 	JTextField surname;
 	JTextField email;
@@ -264,7 +267,10 @@ public class Window extends JFrame {
 		jplPanel.setLayout(gridBag);
 		www2 = www;
 
-		JScrollPane scroll = new JScrollPane(textAreal);
+		final JScrollPane scroll = new JScrollPane(textAreal);
+		JScrollBar verticalPane = scroll.getVerticalScrollBar();
+		verticalPane.setValue(verticalPane.getMinimum());
+		verticalPane.setValue(20);
 		scroll.setPreferredSize(new Dimension(570, 300));
 		encodingAction = encoding;
 		jButton.addActionListener(new ActionListener() {
@@ -282,6 +288,10 @@ public class Window extends JFrame {
 
 				String s = sP.getXML();
 				textAreal.setText(s);
+				JScrollBar verticalPane = scroll.getVerticalScrollBar();
+				JScrollBar horizontalPane = scroll.getHorizontalScrollBar();
+				verticalPane.setValue(verticalPane.getMinimum());
+				horizontalPane.setValue(horizontalPane.getMaximum());			
 			}
 
 		});
@@ -333,6 +343,10 @@ public class Window extends JFrame {
 				
 				
 				JTextAreaMouseAction.get(JLabelMouseAction.size() - j).setText(s);
+				JScrollBar verticalPane = scroll.getVerticalScrollBar();
+				JScrollBar horizontalPane = scroll.getHorizontalScrollBar();
+				verticalPane.setValue(verticalPane.getMinimum());
+				horizontalPane.setValue(horizontalPane.getMaximum());	
 			}
 
 			public void mouseExited(MouseEvent e) {
@@ -344,6 +358,11 @@ public class Window extends JFrame {
 				System.out.println(i);
 				JLabelMouseAction.get(JLabelMouseAction.size() - j).setFont(
 						(new Font("Verdana", Font.ROMAN_BASELINE, 26)));
+				
+				JScrollBar verticalPane = scroll.getVerticalScrollBar();
+				JScrollBar horizontalPane = scroll.getHorizontalScrollBar();
+				verticalPane.setValue(verticalPane.getMinimum());
+				horizontalPane.setValue(horizontalPane.getMaximum());	
 			}
 
 			public void mouseClicked(MouseEvent e) {
