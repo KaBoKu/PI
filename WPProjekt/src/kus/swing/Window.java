@@ -380,8 +380,10 @@ public class Window extends JFrame {
 		JLabel kupnoSprzedarz = new JLabel("kupno/sprzedarz");
 		kupnoSprzedarz.setFont(new Font("Verdana", Font.ITALIC, 12));
 		Calendar cal = Calendar.getInstance();
+		cal.add(cal.DATE, -1);
 		SimpleDateFormat sDF = new SimpleDateFormat("yyyy/MM/dd");
-		JLabel data = new JLabel("<html>Kurs z dnia poprzedniego<br> Bla bla bla</html>");
+		JLabel data = new JLabel("<html>Kurs z dnia poprzedniego<br> "+sDF.format(cal.getTime())+"</html>");
+		data.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 20));
 		jlbDisplay.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 26));
 		sNBP = new SwingNBPParser();
 
