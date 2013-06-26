@@ -1216,5 +1216,23 @@ public class Window extends JFrame {
 
 		return jplPanel;
 	}
+	
+	
+	protected JPanel createEventPanel(){
+		GridBagLayout gridBag = new GridBagLayout();
+		GridBagConstraints gBC = new GridBagConstraints();
+		JPanel jPanel = new JPanel();
+		
+		
+		JLabel Start = new JLabel("Data Rozpoczêcia");
+		JLabel End = new JLabel("Data Zakoñczenia");
+		JLabel Title = new JLabel("Tytu³");
+		JLabel About = new JLabel("Opis");
+		JLabel Where = new JLabel("Gdzie");
+		JFormattedTextField DataStart ;
+		JFormattedTextField DataEnd;
+		
+		return jPanel;
+	}
 
 }
