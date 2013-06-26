@@ -1231,7 +1231,9 @@ public class Window extends JFrame {
 		JLabel Where = new JLabel("Gdzie");
 		JFormattedTextField DataStart ;
 		JFormattedTextField DataEnd;
-		
+		JTextField TitleField = new JTextField("",20);
+		JTextField AboutField = new JTextField("",20);
+		JTextField WhereField = new JTextField("",20);
 		return jPanel;
 	}
 
