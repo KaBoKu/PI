@@ -1232,6 +1232,35 @@ public class Window extends JFrame {
 		gBC.anchor = GridBagConstraints.NORTH;
 		gBC.insets = new Insets(0, 0, 0, 0);
 
+		jPanel.add(DataStart,gBC);
+		
+		gBC.weightx = 0.5;
+		gBC.weighty = 0.5;
+		gBC.gridx = 2;
+		gBC.gridy = 0;
+		gBC.gridwidth = 1;
+		gBC.anchor = GridBagConstraints.NORTH;
+		gBC.insets = new Insets(0, 0, 0, 0);
+		
+		jPanel.add(End,gBC);
+		
+		gBC.weightx = 0.5;
+		gBC.weighty = 0.5;
+		gBC.gridx = 3;
+		gBC.gridy = 0;
+		gBC.gridwidth = 1;
+		gBC.anchor = GridBagConstraints.NORTH;
+		gBC.insets = new Insets(0, 0, 0, 0);
+		
+		jPanel.add(DataEnd,gBC);
+		
+		gBC.weightx = 0.5;
+		gBC.weighty = 0.5;
+		gBC.gridx = 0;
+		gBC.gridy = 0;
+		gBC.gridwidth = 1;
+		gBC.anchor = GridBagConstraints.NORTH;
+		gBC.insets = new Insets(0, 0, 0, 0);
 		return jPanel;
 	}
 
