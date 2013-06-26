@@ -200,6 +200,8 @@ public class Window extends JFrame {
 
 		JPanel jplInnerPanel7 = createTerminarzPanel();
 		// jtbExample.addTab("Terminy", null, jplInnerPanel7, "Tab 8");
+		JPanel jplInnerPanel8 = createInfoPanel();
+		jtbExample.addTab("Info", null, jplInnerPanel8, "Tab 8");
 		setLayout(new GridLayout(1, 1));
 		add(jtbExample);
 
@@ -1184,5 +1186,41 @@ public class Window extends JFrame {
 		// jplPanel.add(jButton, gBC);
 		return jplPanel;
 	}
+	
+	
+	protected JPanel createInfoPanel() {
+		GridBagLayout gridBag = new GridBagLayout();
+		GridBagConstraints gBC = new GridBagConstraints();
+
+		JLabel Info = new JLabel("<html>Informacje<br>" +
+				"Projekt wykonany przez Kamila Kusia<br>" +
+				" </html>");
+		Info.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 23));
+		
+		JPanel jplPanel = new JPanel();
+		
+	
+
+		
+		// jplPanel.setLayout(gridBag);
+		// GridLayout gL = new GridLayout(6, 2, 15, 30);
+		jplPanel.setLayout(gridBag);
+		
+
+		gBC.weightx = 0.5;
+		gBC.weighty = 0.5;
+		gBC.gridx = 0;
+		gBC.gridy = 0;
+		gBC.gridwidth = 1;
+		gBC.anchor = GridBagConstraints.NORTH;
+		gBC.insets = new Insets(0, 0, 0, 0);
+		// gBC.fill = GridBagConstraints.HORIZONTAL;
+		// email.setPreferredSize(preferredSize)
+		jplPanel.add(Info, gBC);
+
+
+		return jplPanel;
+	}
+	
 
 }
