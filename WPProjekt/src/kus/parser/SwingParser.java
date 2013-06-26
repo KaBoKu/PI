@@ -10,7 +10,8 @@ public class SwingParser {
 
 	public SwingParser(String RSS,String encoding) throws UnsupportedEncodingException {
 		s = gURL.GURL(RSS);
-		result = new String(t.xml(s, "channel",encoding));
+		if(s.equals("b³¹d sieci")) result="Brak po³¹czenia z sieci¹, albo odpowiednie serwisy s¹ niedostêpne.";
+		else result = new String(t.xml(s, "channel",encoding));
 	}
 
 	public String getXML() {

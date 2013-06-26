@@ -26,8 +26,13 @@ public class GetURL {
             }
             wynik=linia1;
         } catch (IOException e) {
-            e.printStackTrace();
+            wynik="b³ad sieci";
+        	e.printStackTrace();
+            
         }
-        return wynik;
+        finally{
+        	return wynik;
+        }
+        //return wynik;
     }
 }

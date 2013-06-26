@@ -3,6 +3,7 @@ package kus.parser;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,10 +45,25 @@ public class Main {
 		//System.out.println(a.toString());
 		KursyKeeper kk = new KursyKeeper();
 		
+		String r=gURL.GURL("http://wther.yahooapis.com/forecastrss?w=12862220&u=c");
+		System.out.println(r);
+		/*InetAddress[] addresses = InetAddress.getAllByName("www.weather.yahooapis.com/forecastrss?w=12862220&u=c");
+	      for (InetAddress address : addresses) {
+	        if (address.isReachable(10000))
+	        {   
+	           System.out.println("Connected "+ address);
+	        }
+	        else
+	        {
+	           System.out.println("Failed "+address);
+	        }
+	      }*/
+		//InetAddress byName = InetAddress.getByName("http://weather.yahooapis.com/forecastrss?w=12862220&u=c");
+	  //  System.out.println(byName);
+	  //  System.out.println(byName.isReachable(1000));
+		//InetAddress.isReachable(500); 
 		
-		
-		
-		 WeatherParser hP = new WeatherParser();
+		/* WeatherParser hP = new WeatherParser();
 	        System.out.println(hP.HTML());
 		
 	        String adress="http://weather.yahooapis.com/forecastrss?w=12862220&u=c";
@@ -69,13 +85,13 @@ public class Main {
 	        System.out.println(swp.getXML());
 	
 	        
-	}
+	}*/
 	
 	
 	
 
 }
-
+}
 enum YahooCodes2{
 	 
 	TORNADO(0,"tornado");
