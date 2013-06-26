@@ -67,8 +67,7 @@ public class Window extends JFrame {
 	private JTextArea textAreaW;
 	private String www2;
 	private JScrollPane scroll;
-	
-	
+
 	JTextField name;
 	JTextField surname;
 	JTextField email;
@@ -89,12 +88,11 @@ public class Window extends JFrame {
 	private JLabel countLabelabout6;
 
 	private JTabbedPane jtbExample;
-	
+
 	private JLabel mouseActionLabel;
 	private List<JLabel> JLabelMouseAction = new ArrayList<>();
 	private List<JTextArea> JTextAreaMouseAction = new ArrayList<>();
-	
-	
+
 	SwingNBPParser sNBP;
 	WeatherParser wP;
 	static Owner own;
@@ -109,7 +107,7 @@ public class Window extends JFrame {
 
 	JCheckBox CEmail;
 	JCheckBox CSound;
-	
+
 	private SwingWeahterParser sWP;
 	private JLabel info;
 	JButton jButt;
@@ -120,28 +118,23 @@ public class Window extends JFrame {
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-			try{
-				
-			/*	try {
-					//SplashScreen splash = SplashScreen.getSplashScreen();
-					if (splash == null)
-						System.out.println("null");
+				try {
 
-					//Graphics2D g = (Graphics2D) splash.createGraphics();
+					/*
+					 * try { //SplashScreen splash =
+					 * SplashScreen.getSplashScreen(); if (splash == null)
+					 * System.out.println("null");
+					 * 
+					 * //Graphics2D g = (Graphics2D) splash.createGraphics();
+					 * 
+					 * //Dimension dim = splash.getSize(); for (int i = 0; i <
+					 * 1000; i++) { // g.setColor(Color.RED); //g.fillRect(50,
+					 * 350, i / 2 - 70, 20); //splash.update(); ////try { //
+					 * Thread.sleep(5); } catch (InterruptedException ignored) {
+					 * 
+					 * } }
+					 */
 
-					//Dimension dim = splash.getSize();
-					for (int i = 0; i < 1000; i++) {
-					//	g.setColor(Color.RED);
-						//g.fillRect(50, 350, i / 2 - 70, 20);
-						//splash.update();
-						////try {
-						//	Thread.sleep(5);
-						} catch (InterruptedException ignored) {
-						
-						}
-					}*/
-				
-				
 					Window window = new Window();
 					window.setVisible(true);
 				} catch (Exception e) {
@@ -170,17 +163,17 @@ public class Window extends JFrame {
 		 * own.setAbout("Brak"); own.setEmail("Brak"); own.setName("Brak");
 		 * own.setPhone("Brak"); own.setSurname("Brak");
 		 */
-		this.setBounds(300, 300, 650, 450);
+		this.setBounds(300, 300, 700, 450);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// this.setDefaultLookAndFeelDecorated(true);
 
-	    jtbExample = new JTabbedPane();
+		jtbExample = new JTabbedPane();
 		JPanel jplInnerPanel1 = createWeather();
-		
+
 		jtbExample.addTab("Pogoda", null, jplInnerPanel1, "Tab 1");
 		jtbExample.setSelectedIndex(0);
 
-		jtbExample.addTab("Pogoda", null, jplInnerPanel1, "Tab 2");
+		//jtbExample.addTab("Pogoda", null, jplInnerPanel1, "Tab 2");
 		JPanel jplInnerPanel2 = createXMLPanel("TVN24",
 				"http://www.tvn24.pl/najwazniejsze.xml", "UTF-8");
 		jtbExample.addTab("RSSKana³ TVN24", null, jplInnerPanel2, "Tab 3");
@@ -198,10 +191,10 @@ public class Window extends JFrame {
 		JPanel jplInnerPanel6 = createCalendarPanel();
 		jtbExample.addTab("Kalendarz", null, jplInnerPanel6, "Tab 7");
 
-		JPanel jplInnerPanel7 = createTerminarzPanel();
-		// jtbExample.addTab("Terminy", null, jplInnerPanel7, "Tab 8");
+		/*JPanel jplInnerPanel7 = createTerminarzPanel();
+		 jtbExample.addTab("Terminy", null, jplInnerPanel7, "Tab 8");*/
 		JPanel jplInnerPanel8 = createInfoPanel();
-		jtbExample.addTab("Info", null, jplInnerPanel8, "Tab 8");
+		jtbExample.addTab("Info", null, jplInnerPanel8, "Tab 9");
 		setLayout(new GridLayout(1, 1));
 		add(jtbExample);
 
@@ -293,7 +286,7 @@ public class Window extends JFrame {
 				JScrollBar verticalPane = scroll.getVerticalScrollBar();
 				JScrollBar horizontalPane = scroll.getHorizontalScrollBar();
 				verticalPane.setValue(verticalPane.getMinimum());
-				horizontalPane.setValue(horizontalPane.getMaximum());			
+				horizontalPane.setValue(horizontalPane.getMaximum());
 			}
 
 		});
@@ -323,15 +316,17 @@ public class Window extends JFrame {
 				// 26)));
 				int i = jtbExample.getSelectedIndex();
 				String adres = "http://www.tvn24.pl/najwazniejsze.xml";
-				String en= "UTF-8";
-				int j=1;
-				if (i==1) {j=2;adres="http://rss.gazeta.pl/pub/rss/wiadomosci_kraj.htm";en="ISO-8859-2";}
+				String en = "UTF-8";
+				int j = 1;
+				if (i == 1) {
+					j = 2;
+					adres = "http://rss.gazeta.pl/pub/rss/wiadomosci_kraj.htm";
+					en = "ISO-8859-2";
+				}
 				JLabelMouseAction.get(JLabelMouseAction.size() - j).setFont(
 						(new Font("Verdana", Font.ITALIC, 26)));
 				jtbExample.getSelectedIndex();
-				
-				
-				
+
 				SwingParser sP = null;
 				try {
 					sP = new SwingParser(adres, en);
@@ -341,30 +336,30 @@ public class Window extends JFrame {
 				}
 
 				String s = sP.getXML();
-				
-				
-				
-				JTextAreaMouseAction.get(JLabelMouseAction.size() - j).setText(s);
+
+				JTextAreaMouseAction.get(JLabelMouseAction.size() - j).setText(
+						s);
 				JScrollBar verticalPane = scroll.getVerticalScrollBar();
 				JScrollBar horizontalPane = scroll.getHorizontalScrollBar();
 				verticalPane.setValue(verticalPane.getMinimum());
-				horizontalPane.setValue(horizontalPane.getMaximum());	
+				horizontalPane.setValue(horizontalPane.getMaximum());
 			}
 
 			public void mouseExited(MouseEvent e) {
 				// mouseActionLabel.setFont(new Font("Verdana",
 				// Font.ROMAN_BASELINE, 26));
 				int i = jtbExample.getSelectedIndex();
-				int j=1;
-				if (i==1) j=2;
+				int j = 1;
+				if (i == 1)
+					j = 2;
 				System.out.println(i);
 				JLabelMouseAction.get(JLabelMouseAction.size() - j).setFont(
 						(new Font("Verdana", Font.ROMAN_BASELINE, 26)));
-				
+
 				JScrollBar verticalPane = scroll.getVerticalScrollBar();
 				JScrollBar horizontalPane = scroll.getHorizontalScrollBar();
 				verticalPane.setValue(verticalPane.getMinimum());
-				horizontalPane.setValue(horizontalPane.getMaximum());	
+				horizontalPane.setValue(horizontalPane.getMaximum());
 			}
 
 			public void mouseClicked(MouseEvent e) {
@@ -407,7 +402,8 @@ public class Window extends JFrame {
 		Calendar cal = Calendar.getInstance();
 		cal.add(cal.DATE, -1);
 		SimpleDateFormat sDF = new SimpleDateFormat("yyyy/MM/dd");
-		JLabel data = new JLabel("<html>Kurs z dnia poprzedniego<br> "+sDF.format(cal.getTime())+"</html>");
+		JLabel data = new JLabel("<html>Kurs z dnia poprzedniego<br> "
+				+ sDF.format(cal.getTime()) + "</html>");
 		data.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 20));
 		jlbDisplay.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 26));
 		sNBP = new SwingNBPParser();
@@ -461,7 +457,7 @@ public class Window extends JFrame {
 		gBC.anchor = GridBagConstraints.WEST;
 
 		jplPanel.add(kupnoSprzedarz, gBC);
-		
+
 		gBC.weightx = 0.5;
 		gBC.weighty = 0.5;
 		gBC.gridx = 1;
@@ -469,56 +465,62 @@ public class Window extends JFrame {
 		gBC.gridwidth = 1;
 		gBC.insets = new Insets(0, 0, 0, 0);
 		gBC.anchor = GridBagConstraints.NORTH;
-		
-		jplPanel.add(data,gBC);
+
+		jplPanel.add(data, gBC);
 		return jplPanel;
 	}
 
 	protected JPanel createWeather() {
 		GridBagLayout gridBag = new GridBagLayout();
 		GridBagConstraints gBC = new GridBagConstraints();
-		//JLabel info = null; 
+		// JLabel info = null;
 		;// = new WeatherParser();
-		//SwingWeahterParser sWP=null; 
-		String [] miasta = { "Kraków","Katowice","Warszawa","Poznañ","Szczeciñ","£ódŸ"};
+			// SwingWeahterParser sWP=null;
+		String[] miasta = { "Kraków", "Katowice", "Warszawa", "Poznañ",
+				"Szczeciñ", "£ódŸ" };
 		JComboBox listaMiast = new JComboBox(miasta);
 		listaMiast.setFont(new Font("Verdana", Font.BOLD, 23));
-		
-		
-		listaMiast.addActionListener(new ActionListener(){
+
+		listaMiast.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JComboBox tmpCombo = (JComboBox) e.getSource();
 				String miasto = (String) tmpCombo.getSelectedItem();
 				System.out.println(miasto);
-				if (miasto.equals("Kraków")){
+				if (miasto.equals("Kraków")) {
 					try {
-						sWP =  new SwingWeahterParser("http://weather.yahooapis.com/forecastrss?w=12862220&u=c","windows-1250");
+						sWP = new SwingWeahterParser(
+								"http://weather.yahooapis.com/forecastrss?w=12862220&u=c",
+								"windows-1250");
 					} catch (UnsupportedEncodingException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
-				
-				if (miasto.equals("Katowice")){
+
+				if (miasto.equals("Katowice")) {
 					try {
-						sWP =  new SwingWeahterParser("http://weather.yahooapis.com/forecastrss?w=498842&u=c","windows-1250");
+						sWP = new SwingWeahterParser(
+								"http://weather.yahooapis.com/forecastrss?w=498842&u=c",
+								"windows-1250");
 					} catch (UnsupportedEncodingException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
-				
+
 				textAreaW.setText(sWP.getXML());
 			}
-			
+
 		});
-		
-		//JList listaMiast = new JList(miasta);
-		//JScrollPane scrollMiast = new JScrollPane(listaMiast);
+
+		// JList listaMiast = new JList(miasta);
+		// JScrollPane scrollMiast = new JScrollPane(listaMiast);
 		try {
-			sWP =  new SwingWeahterParser("http://weather.yahooapis.com/forecastrss?w=12862220&u=c","windows-1250");
+			sWP = new SwingWeahterParser(
+					"http://weather.yahooapis.com/forecastrss?w=12862220&u=c",
+					"windows-1250");
 		} catch (UnsupportedEncodingException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -528,9 +530,9 @@ public class Window extends JFrame {
 		JPanel jplPanel = new JPanel();
 		JLabel jlbDisplay = new JLabel("Pogoda");
 		jlbDisplay.setFont(new Font("Verdana", Font.PLAIN, 26));
-		//sNBP = new SwingNBPParser();
+		// sNBP = new SwingNBPParser();
 
-		textAreaW = new JTextArea(sWP.getXML(),5,10);//wP.HTML(), 5, 10);
+		textAreaW = new JTextArea(sWP.getXML(), 5, 10);// wP.HTML(), 5, 10);
 		textAreaW.setEditable(false);
 		Border br = new BevelBorder(BevelBorder.LOWERED);
 		textAreaW.setBorder(br);
@@ -547,8 +549,8 @@ public class Window extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//String s = sNBP.getXML();
-				//textAreal.setText(wP.HTML());
+				// String s = sNBP.getXML();
+				// textAreal.setText(wP.HTML());
 			}
 
 		});
@@ -751,16 +753,15 @@ public class Window extends JFrame {
 		GridBagLayout gridBag = new GridBagLayout();
 		GridBagConstraints gBC = new GridBagConstraints();
 
-		ImagePanel jplPanel = new ImagePanel(
-				"D:/WorkSpaceJuno/WPProjekt/src/kus/swing/kalendarz.jpg");
-
+		JPanel jplPanel = new JPanel();
+/*
 		jplPanel.setPreferredSize(new Dimension(300, 300));
 		jplPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
 
-		// jplPanel.setLayout(gridBag);
+		 jplPanel.setLayout(gridBag);
 		Kalendar kal = new Kalendar();
 		// this.setLayout(new BoxLayout(kal, BoxLayout.X_AXIS));
-		// kal.setSize(200, 300);
+		 kal.setSize(200, 300);
 		kal.setPreferredSize(new Dimension(170, 165));
 		jplPanel.add(kal);
 
@@ -772,8 +773,8 @@ public class Window extends JFrame {
 		gBC.anchor = GridBagConstraints.CENTER;
 		gBC.ipadx = 0;
 		gBC.ipady = 0;
-		// kal.setPreferredSize(new Dimension(300, 300));
-		// kal.setBounds(0, 0, 150, 150);
+		 kal.setPreferredSize(new Dimension(300, 300));
+		 kal.setBounds(0, 0, 150, 150);
 		// jplPanel.add(kal, gBC);
 
 		gBC.weightx = 0.5;
@@ -811,7 +812,7 @@ public class Window extends JFrame {
 		gBC.anchor = GridBagConstraints.PAGE_START;
 
 		// jplPanel.add(jButton, gBC);
-		return jplPanel;
+*/		return jplPanel;
 	}
 
 	protected class Kalendar extends JPanel {
@@ -1186,26 +1187,21 @@ public class Window extends JFrame {
 		// jplPanel.add(jButton, gBC);
 		return jplPanel;
 	}
-	
-	
+
 	protected JPanel createInfoPanel() {
 		GridBagLayout gridBag = new GridBagLayout();
 		GridBagConstraints gBC = new GridBagConstraints();
 
-		JLabel Info = new JLabel("<html>Informacje<br>" +
-				"Projekt wykonany przez Kamila Kusia<br>" +
-				" </html>");
+		JLabel Info = new JLabel("<html>Informacje<br>"
+				+ "Aplikacja Infos4u<br>" + "Wykonana przez Kamila Kusia <br>"
+				+ "W ramach projektu indiwualnego" + " </html>");
 		Info.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 23));
-		
-		JPanel jplPanel = new JPanel();
-		
-	
 
-		
+		JPanel jplPanel = new JPanel();
+
 		// jplPanel.setLayout(gridBag);
 		// GridLayout gL = new GridLayout(6, 2, 15, 30);
 		jplPanel.setLayout(gridBag);
-		
 
 		gBC.weightx = 0.5;
 		gBC.weighty = 0.5;
@@ -1218,9 +1214,7 @@ public class Window extends JFrame {
 		// email.setPreferredSize(preferredSize)
 		jplPanel.add(Info, gBC);
 
-
 		return jplPanel;
 	}
-	
 
 }
