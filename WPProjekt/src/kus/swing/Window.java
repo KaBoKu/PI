@@ -1257,10 +1257,63 @@ public class Window extends JFrame {
 		gBC.weightx = 0.5;
 		gBC.weighty = 0.5;
 		gBC.gridx = 0;
-		gBC.gridy = 0;
+		gBC.gridy = 1;
 		gBC.gridwidth = 1;
 		gBC.anchor = GridBagConstraints.NORTH;
 		gBC.insets = new Insets(0, 0, 0, 0);
+		
+		jPanel.add(Title,gBC);
+		
+		gBC.weightx = 0.5;
+		gBC.weighty = 0.5;
+		gBC.gridx = 1;
+		gBC.gridy = 1;
+		gBC.gridwidth = 1;
+		gBC.anchor = GridBagConstraints.NORTH;
+		gBC.insets = new Insets(0, 0, 0, 0);
+		
+		jPanel.add(TitleField,gBC);
+		
+		gBC.weightx = 0.5;
+		gBC.weighty = 0.5;
+		gBC.gridx = 2;
+		gBC.gridy = 1;
+		gBC.gridwidth = 1;
+		gBC.anchor = GridBagConstraints.NORTH;
+		gBC.insets = new Insets(0, 0, 0, 0);
+		
+		jPanel.add(About,gBC);
+		
+		gBC.weightx = 0.5;
+		gBC.weighty = 0.5;
+		gBC.gridx = 3;
+		gBC.gridy = 1;
+		gBC.gridwidth = 1;
+		gBC.anchor = GridBagConstraints.NORTH;
+		gBC.insets = new Insets(0, 0, 0, 0);
+		
+		jPanel.add(AboutField,gBC);
+		
+		gBC.weightx = 0.5;
+		gBC.weighty = 0.5;
+		gBC.gridx = 4;
+		gBC.gridy = 1;
+		gBC.gridwidth = 1;
+		gBC.anchor = GridBagConstraints.NORTH;
+		gBC.insets = new Insets(0, 0, 0, 0);
+		
+		jPanel.add(Where,gBC);
+		
+		
+		gBC.weightx = 0.5;
+		gBC.weighty = 0.5;
+		gBC.gridx = 5;
+		gBC.gridy = 1;
+		gBC.gridwidth = 1;
+		gBC.anchor = GridBagConstraints.NORTH;
+		gBC.insets = new Insets(0, 0, 0, 0);
+		
+		jPanel.add(WhereField,gBC);
 		return jPanel;
 	}
 
