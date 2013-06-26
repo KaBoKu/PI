@@ -173,7 +173,7 @@ public class Window extends JFrame {
 		jtbExample.addTab("Pogoda", null, jplInnerPanel1, "Tab 1");
 		jtbExample.setSelectedIndex(0);
 
-		//jtbExample.addTab("Pogoda", null, jplInnerPanel1, "Tab 2");
+		// jtbExample.addTab("Pogoda", null, jplInnerPanel1, "Tab 2");
 		JPanel jplInnerPanel2 = createXMLPanel("TVN24",
 				"http://www.tvn24.pl/najwazniejsze.xml", "UTF-8");
 		jtbExample.addTab("RSSKana³ TVN24", null, jplInnerPanel2, "Tab 3");
@@ -191,8 +191,10 @@ public class Window extends JFrame {
 		JPanel jplInnerPanel6 = createCalendarPanel();
 		jtbExample.addTab("Kalendarz", null, jplInnerPanel6, "Tab 7");
 
-		/*JPanel jplInnerPanel7 = createTerminarzPanel();
-		 jtbExample.addTab("Terminy", null, jplInnerPanel7, "Tab 8");*/
+		/*
+		 * JPanel jplInnerPanel7 = createTerminarzPanel();
+		 * jtbExample.addTab("Terminy", null, jplInnerPanel7, "Tab 8");
+		 */
 		JPanel jplInnerPanel8 = createInfoPanel();
 		jtbExample.addTab("Info", null, jplInnerPanel8, "Tab 9");
 		setLayout(new GridLayout(1, 1));
@@ -754,65 +756,40 @@ public class Window extends JFrame {
 		GridBagConstraints gBC = new GridBagConstraints();
 
 		JPanel jplPanel = new JPanel();
-/*
-		jplPanel.setPreferredSize(new Dimension(300, 300));
-		jplPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
-
-		 jplPanel.setLayout(gridBag);
-		Kalendar kal = new Kalendar();
-		// this.setLayout(new BoxLayout(kal, BoxLayout.X_AXIS));
-		 kal.setSize(200, 300);
-		kal.setPreferredSize(new Dimension(170, 165));
-		jplPanel.add(kal);
-
-		gBC.weightx = 0.5;
-		gBC.weighty = 0.5;
-		gBC.gridx = 0;
-		gBC.gridy = 0;
-		gBC.gridwidth = 0;
-		gBC.anchor = GridBagConstraints.CENTER;
-		gBC.ipadx = 0;
-		gBC.ipady = 0;
-		 kal.setPreferredSize(new Dimension(300, 300));
-		 kal.setBounds(0, 0, 150, 150);
-		// jplPanel.add(kal, gBC);
-
-		gBC.weightx = 0.5;
-		gBC.weighty = 0.5;
-		gBC.gridx = 0;
-		gBC.gridy = 1;
-		gBC.gridwidth = 1;
-		gBC.anchor = GridBagConstraints.WEST;
-
-		// jplPanel.add(name, gBC);
-
-		gBC.weightx = 0.5;
-		gBC.weighty = 0.5;
-		gBC.gridx = 0;
-		gBC.gridy = 2;
-		gBC.gridwidth = 1;
-		gBC.anchor = GridBagConstraints.WEST;
-
-		// jplPanel.add(surname, gBC);
-
-		gBC.weightx = 0.5;
-		gBC.weighty = 0.5;
-		gBC.gridx = 0;
-		gBC.gridy = 3;
-		gBC.gridwidth = 1;
-		gBC.anchor = GridBagConstraints.WEST;
-
-		// jplPanel.add(phone, gBC);
-
-		gBC.weightx = 0.5;
-		gBC.weighty = 0.5;
-		gBC.gridx = 1;
-		gBC.gridy = 1;
-		gBC.gridwidth = 1;
-		gBC.anchor = GridBagConstraints.PAGE_START;
-
-		// jplPanel.add(jButton, gBC);
-*/		return jplPanel;
+		/*
+		 * jplPanel.setPreferredSize(new Dimension(300, 300));
+		 * jplPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
+		 * 
+		 * jplPanel.setLayout(gridBag); Kalendar kal = new Kalendar(); //
+		 * this.setLayout(new BoxLayout(kal, BoxLayout.X_AXIS));
+		 * kal.setSize(200, 300); kal.setPreferredSize(new Dimension(170, 165));
+		 * jplPanel.add(kal);
+		 * 
+		 * gBC.weightx = 0.5; gBC.weighty = 0.5; gBC.gridx = 0; gBC.gridy = 0;
+		 * gBC.gridwidth = 0; gBC.anchor = GridBagConstraints.CENTER; gBC.ipadx
+		 * = 0; gBC.ipady = 0; kal.setPreferredSize(new Dimension(300, 300));
+		 * kal.setBounds(0, 0, 150, 150); // jplPanel.add(kal, gBC);
+		 * 
+		 * gBC.weightx = 0.5; gBC.weighty = 0.5; gBC.gridx = 0; gBC.gridy = 1;
+		 * gBC.gridwidth = 1; gBC.anchor = GridBagConstraints.WEST;
+		 * 
+		 * // jplPanel.add(name, gBC);
+		 * 
+		 * gBC.weightx = 0.5; gBC.weighty = 0.5; gBC.gridx = 0; gBC.gridy = 2;
+		 * gBC.gridwidth = 1; gBC.anchor = GridBagConstraints.WEST;
+		 * 
+		 * // jplPanel.add(surname, gBC);
+		 * 
+		 * gBC.weightx = 0.5; gBC.weighty = 0.5; gBC.gridx = 0; gBC.gridy = 3;
+		 * gBC.gridwidth = 1; gBC.anchor = GridBagConstraints.WEST;
+		 * 
+		 * // jplPanel.add(phone, gBC);
+		 * 
+		 * gBC.weightx = 0.5; gBC.weighty = 0.5; gBC.gridx = 1; gBC.gridy = 1;
+		 * gBC.gridwidth = 1; gBC.anchor = GridBagConstraints.PAGE_START;
+		 * 
+		 * // jplPanel.add(jButton, gBC);
+		 */return jplPanel;
 	}
 
 	protected class Kalendar extends JPanel {
@@ -1216,24 +1193,45 @@ public class Window extends JFrame {
 
 		return jplPanel;
 	}
-	
-	
-	protected JPanel createEventPanel(){
+
+	protected JPanel createEventPanel() {
 		GridBagLayout gridBag = new GridBagLayout();
 		GridBagConstraints gBC = new GridBagConstraints();
 		JPanel jPanel = new JPanel();
-		
-		
+
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+
 		JLabel Start = new JLabel("Data Rozpoczêcia");
 		JLabel End = new JLabel("Data Zakoñczenia");
 		JLabel Title = new JLabel("Tytu³");
 		JLabel About = new JLabel("Opis");
 		JLabel Where = new JLabel("Gdzie");
-		JFormattedTextField DataStart ;
-		JFormattedTextField DataEnd;
-		JTextField TitleField = new JTextField("",20);
-		JTextField AboutField = new JTextField("",20);
-		JTextField WhereField = new JTextField("",20);
+		JFormattedTextField DataStart = new JFormattedTextField(df);
+		DataStart.setColumns(10);
+		JFormattedTextField DataEnd = new JFormattedTextField(df);
+		DataEnd.setColumns(10);
+		JTextField TitleField = new JTextField("", 20);
+		JTextField AboutField = new JTextField("", 20);
+		JTextField WhereField = new JTextField("", 20);
+
+		gBC.weightx = 0.5;
+		gBC.weighty = 0.5;
+		gBC.gridx = 0;
+		gBC.gridy = 0;
+		gBC.gridwidth = 1;
+		gBC.anchor = GridBagConstraints.NORTH;
+		gBC.insets = new Insets(0, 0, 0, 0);
+
+		jPanel.add(Start, gBC);
+
+		gBC.weightx = 0.5;
+		gBC.weighty = 0.5;
+		gBC.gridx = 1;
+		gBC.gridy = 0;
+		gBC.gridwidth = 1;
+		gBC.anchor = GridBagConstraints.NORTH;
+		gBC.insets = new Insets(0, 0, 0, 0);
+
 		return jPanel;
 	}
 
