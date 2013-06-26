@@ -188,7 +188,7 @@ public class Window extends JFrame {
 		JPanel jplInnerPanel5 = createOwnerPanel();
 		jtbExample.addTab("Dane u¿ytkownika", null, jplInnerPanel5, "Tab 6");
 
-		JPanel jplInnerPanel6 = createCalendarPanel();
+		JPanel jplInnerPanel6 = createEventPanel();//createCalendarPanel();
 		jtbExample.addTab("Kalendarz", null, jplInnerPanel6, "Tab 7");
 
 		/*
@@ -1198,7 +1198,7 @@ public class Window extends JFrame {
 		GridBagLayout gridBag = new GridBagLayout();
 		GridBagConstraints gBC = new GridBagConstraints();
 		JPanel jPanel = new JPanel();
-
+		jPanel.setLayout(gridBag);
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 
 		JLabel Start = new JLabel("Data Rozpoczêcia");
@@ -1296,8 +1296,8 @@ public class Window extends JFrame {
 		
 		gBC.weightx = 0.5;
 		gBC.weighty = 0.5;
-		gBC.gridx = 4;
-		gBC.gridy = 1;
+		gBC.gridx = 0;
+		gBC.gridy = 2;
 		gBC.gridwidth = 1;
 		gBC.anchor = GridBagConstraints.NORTH;
 		gBC.insets = new Insets(0, 0, 0, 0);
@@ -1307,13 +1307,17 @@ public class Window extends JFrame {
 		
 		gBC.weightx = 0.5;
 		gBC.weighty = 0.5;
-		gBC.gridx = 5;
-		gBC.gridy = 1;
+		gBC.gridx = 1;
+		gBC.gridy = 2;
 		gBC.gridwidth = 1;
 		gBC.anchor = GridBagConstraints.NORTH;
 		gBC.insets = new Insets(0, 0, 0, 0);
 		
 		jPanel.add(WhereField,gBC);
+		
+		jPanel.setPreferredSize(new Dimension(200,200));
+		jPanel.setSize(200, 200);
+		jPanel.setBackground(Color.BLUE);
 		return jPanel;
 	}
 
