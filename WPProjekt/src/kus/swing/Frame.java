@@ -12,6 +12,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 public class Frame {
@@ -24,9 +25,18 @@ public class Frame {
 		JFrame jF = new JFrame();
 		jF.setSize(new Dimension(600, 800));
 		JPanel p = createEventPanel();
-		jF.add(p);
-		jF.pack();
+		//jF.add(p);
+		//jF.pack();
+		
+		JScrollPane jSP = new JScrollPane();
+		jSP.setSize(400,400);
+		jSP.add(p);
+		
+		JScrollPane scrollBar=new JScrollPane(p,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		
+		jF.add(scrollBar);
 		jF.setVisible(true);
+		
 	}
 
 	static protected JPanel createEventPanel() {
