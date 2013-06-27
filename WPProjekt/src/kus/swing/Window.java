@@ -480,6 +480,7 @@ public class Window extends JFrame {
 	protected JPanel createWeather() {
 		GridBagLayout gridBag = new GridBagLayout();
 		GridBagConstraints gBC = new GridBagConstraints();
+		JLabel image;
 		// JLabel info = null;
 		;// = new WeatherParser();
 			// SwingWeahterParser sWP=null;
@@ -573,8 +574,11 @@ public class Window extends JFrame {
 						e1.printStackTrace();
 					}
 				}
-				
-				textAreaW.setText(sWP.getXML());
+				System.out.println("Inner "+sWP.getXML());
+				String [] split = sWP.getXML().split("code");
+				System.out.println("split: "+split[1]);
+				//image = new JLabel(new ImageIcon("abc.jpg"))); 
+				textAreaW.setText(split[0]);
 			}
 
 		});
@@ -645,8 +649,18 @@ public class Window extends JFrame {
 		gBC.gridy = 1;
 		gBC.gridwidth = 1;
 		gBC.anchor = GridBagConstraints.PAGE_START;
-
+		
 		jplPanel.add(listaMiast, gBC);
+		
+		gBC.weightx = 0.5;
+		gBC.weighty = 0.5;
+		gBC.gridx = 1;
+		gBC.gridy = 2;
+		gBC.gridwidth = 1;
+		gBC.anchor = GridBagConstraints.CENTER;
+		
+		//jplPanel.add(info,gBC);
+		
 		return jplPanel;
 	}
 
@@ -832,8 +846,8 @@ public class Window extends JFrame {
 		gBC.weightx = 0;
 		gBC.weighty =0;
 		gBC.gridx = 1;
-		gBC.gridy = 0;
-		gBC.anchor = GridBagConstraints.EAST;
+		gBC.gridy = 1;
+		gBC.anchor = GridBagConstraints.NORTH;
 		
 		jplPanel.add(add,gBC);
 		

@@ -14,6 +14,7 @@ public class RSSYahooWether extends TemplateXML{
 	public String extractData(Document doc) {
 		// TODO Auto-generated method stub
 		String result="";
+		String code="";
 		System.out.println(doc.getDocumentElement());
 		Node n = doc.getDocumentElement();
 		NodeList nL = doc.getElementsByTagName("*");
@@ -48,13 +49,15 @@ public class RSSYahooWether extends TemplateXML{
 			if (el.getTagName().startsWith("yweather:condition")){
 				System.out.println("Opis: "+el.getAttribute("text"));
 				System.out.println("Kod: "+el.getAttribute("code"));
+				code+=el.getAttribute("code");
 			}
 			
 			
 		}
 		System.out.println("system "+Charset.defaultCharset());
-		System.out.println(result);
-		return result;//element.getAttribute("city");
+		//System.out.println(result=result+"\ncode "+code);
+		
+		return result+"code "+code;//element.getAttribute("city");
 	}
 
 	@Override
