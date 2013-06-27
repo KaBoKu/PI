@@ -8,6 +8,7 @@ import java.awt.Insets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -46,7 +47,8 @@ public class Frame {
 		jPanel.setLayout(gridBag);
 		jPanel.setPreferredSize(new Dimension(400, 400));
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-
+		
+		JButton Done = new JButton("Dodaj");
 		JLabel Start = new JLabel("Data Rozpoczêcia");
 		JLabel End = new JLabel("Data Zakoñczenia");
 		JLabel Title = new JLabel("Tytu³");

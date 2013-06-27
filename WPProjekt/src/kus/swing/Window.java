@@ -188,7 +188,7 @@ public class Window extends JFrame {
 		JPanel jplInnerPanel5 = createOwnerPanel();
 		jtbExample.addTab("Dane u¿ytkownika", null, jplInnerPanel5, "Tab 6");
 
-		JPanel jplInnerPanel6 = createEventPanel();//createCalendarPanel();
+		JPanel jplInnerPanel6 = createCalendarPanel();
 		jtbExample.addTab("Kalendarz", null, jplInnerPanel6, "Tab 7");
 
 		/*
@@ -754,8 +754,22 @@ public class Window extends JFrame {
 	protected JPanel createCalendarPanel() {
 		GridBagLayout gridBag = new GridBagLayout();
 		GridBagConstraints gBC = new GridBagConstraints();
+		JButton add = new JButton("Dodaj nowe wydarzenie");
+		
 
+		
+		gBC.weightx = 0;
+		gBC.weighty =0;
+		gBC.anchor = GridBagConstraints.CENTER;
+		
+		
 		JPanel jplPanel = new JPanel();
+		
+		gBC.weightx = 0;
+		gBC.weighty =0;
+		gBC.anchor = GridBagConstraints.CENTER;
+		
+		jplPanel.add(add,gBC);
 		/*
 		 * jplPanel.setPreferredSize(new Dimension(300, 300));
 		 * jplPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -789,7 +803,229 @@ public class Window extends JFrame {
 		 * gBC.gridwidth = 1; gBC.anchor = GridBagConstraints.PAGE_START;
 		 * 
 		 * // jplPanel.add(jButton, gBC);
-		 */return jplPanel;
+		 */
+		
+		
+		
+		class AboutDialog extends JDialog implements ActionListener {
+			public AboutDialog(JFrame parent, String title, String message,
+					Date data) {
+				/*
+				 * Date start; Date end; boolean emailWaring; boolean
+				 * soundWaring; private String title; String where; String
+				 * about;
+				 */
+
+				super(parent, title, true);
+				Date dataInner = data;
+				JLabel lDateStart = new JLabel("Pocz¹tek");
+				JLabel lDateEnd = new JLabel("Koniec");
+				JLabel lEmailW = new JLabel("Email powiadomienie");
+				JLabel lSoundW = new JLabel("DŸwiêk powiadomienie");
+				JLabel lTitle = new JLabel("Nazwa");
+				JLabel lWhere = new JLabel("Gdzie");
+				JLabel lAbout = new JLabel("Opis");
+
+				jTDateStart = new JFormattedTextField(new DateFormatter(
+						new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa",
+								Locale.ENGLISH)));
+				jTDateEnd = new JFormattedTextField(new DateFormatter(
+						new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa",
+								Locale.ENGLISH)));
+				jTTitle = new JTextField("Nazwa", 20);
+				jTWhere = new JTextField("Gdzie", 20);
+				jTAbout = new JTextField("Opis", 20);
+
+				jTDateStart.setEditable(true);
+
+				CEmail = new JCheckBox("Email powiadomienie");
+				CSound = new JCheckBox("DŸwiêk powiadomienie");
+
+				JButton jButt = new JButton("Ustaw");
+
+				GridBagLayout gridBag = new GridBagLayout();
+				GridBagConstraints gBC = new GridBagConstraints();
+
+				Event e = new Event();
+				eHolder.add(e);
+				if (parent != null) {
+					Dimension parentSize = parent.getSize();
+					Point p = parent.getLocation();
+					setLocation(p.x + parentSize.width / 4, p.y
+							+ parentSize.height / 4);
+				}
+				this.setLayout(gridBag);
+
+				gBC.weightx = 0.5;
+				gBC.weighty = 0.5;
+				gBC.gridx = 0;
+				gBC.gridy = 0;
+				gBC.gridwidth = 1;
+				gBC.anchor = GridBagConstraints.CENTER;
+				// email.setPreferredSize(preferredSize)
+				this.add(lDateStart, gBC);
+
+				gBC.weightx = 0.5;
+				gBC.weighty = 0.5;
+				gBC.gridx = 1;
+				gBC.gridy = 0;
+				gBC.gridwidth = 1;
+				gBC.anchor = GridBagConstraints.WEST;
+				// email.setPreferredSize(preferredSize)
+				jTDateStart.setValue(dataInner);
+				this.add(jTDateStart, gBC);
+
+				gBC.weightx = 0.5;
+				gBC.weighty = 0.5;
+				gBC.gridx = 2;
+				gBC.gridy = 0;
+				gBC.gridwidth = 1;
+				gBC.anchor = GridBagConstraints.CENTER;
+				// email.setPreferredSize(preferredSize)
+				this.add(lDateEnd, gBC);
+
+				gBC.weightx = 0.5;
+				gBC.weighty = 0.5;
+				gBC.gridx = 3;
+				gBC.gridy = 0;
+				gBC.gridwidth = 1;
+				gBC.anchor = GridBagConstraints.CENTER;
+				// jTDateEnd.setBounds(135, 34, 187, 19);
+				jTDateEnd.setPreferredSize(new Dimension(150, 20));
+				this.add(jTDateEnd, gBC);
+
+				gBC.weightx = 0.5;
+				gBC.weighty = 0.5;
+				gBC.gridx = 0;
+				gBC.gridy = 1;
+				gBC.gridwidth = 1;
+				gBC.anchor = GridBagConstraints.CENTER;
+				// email.setPreferredSize(preferredSize)
+				this.add(lTitle, gBC);
+
+				gBC.weightx = 0.5;
+				gBC.weighty = 0.5;
+				gBC.gridx = 1;
+				gBC.gridy = 1;
+				gBC.gridwidth = 1;
+				gBC.anchor = GridBagConstraints.CENTER;
+
+				this.add(jTTitle, gBC);
+
+				gBC.weightx = 0.5;
+				gBC.weighty = 0.5;
+				gBC.gridx = 2;
+				gBC.gridy = 1;
+				gBC.gridwidth = 1;
+				gBC.anchor = GridBagConstraints.CENTER;
+				// email.setPreferredSize(preferredSize)
+				this.add(lWhere, gBC);
+
+				gBC.weightx = 0.5;
+				gBC.weighty = 0.5;
+				gBC.gridx = 3;
+				gBC.gridy = 1;
+				gBC.gridwidth = 1;
+				gBC.anchor = GridBagConstraints.CENTER;
+
+				this.add(jTWhere, gBC);
+
+				/*gBC.weightx = 0.5;
+				gBC.weighty = 0.5;
+				gBC.gridx = 0;
+				gBC.gridy = 8;
+				gBC.gridwidth = 1;
+				gBC.anchor = GridBagConstraints.PAGE_END;
+				// email.setPreferredSize(preferredSize)
+				this.add(lAbout, gBC);
+
+				gBC.weightx = 0.5;
+				gBC.weighty = 0.5;
+				gBC.gridx = 0;
+				gBC.gridy = 2;
+				gBC.gridwidth = 1;
+				gBC.anchor = GridBagConstraints.CENTER;
+
+				this.add(jTAbout, gBC);
+
+				gBC.weightx = 0.5;
+				gBC.weighty = 0.5;
+				gBC.gridx = 1;
+				gBC.gridy = 2;
+				gBC.gridwidth = 1;
+				gBC.anchor = GridBagConstraints.CENTER;
+
+				this.add(jButt, gBC);
+
+				gBC.weightx = 0.5;
+				gBC.weighty = 0.5;
+				gBC.gridx = 1;
+				gBC.gridy = 4;
+				gBC.gridwidth = 1;
+				gBC.anchor = GridBagConstraints.CENTER;
+				this.add(CEmail, gBC);
+
+				gBC.weightx = 0.5;
+				gBC.weighty = 0.5;
+				gBC.gridx = 1;
+				gBC.gridy = 5;
+				gBC.gridwidth = 1;
+				gBC.anchor = GridBagConstraints.CENTER;
+
+				this.add(CSound, gBC);
+*/
+				JPanel messagePane = new JPanel();
+
+				setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+				this.setSize(600, 800);
+
+				jButt.addActionListener(this);
+
+				setVisible(true);
+			}
+
+			// GridBagLayout gBag = new GridBagLayout();
+			// GridBagConstraints gBC = new GridBagConstraints();
+
+			public void actionPerformed(ActionEvent e) {
+				Event eV = new Event();
+				eV.setStart((Date) jTDateStart.getValue());
+				eV.setEnd((Date) jTDateEnd.getValue());
+				eV.setAbout(jTAbout.getText());
+				eV.setTitle(jTTitle.getText());
+				eV.setWhere(jTWhere.getText());
+
+				eV.setEmailWaring(CEmail.isSelected());
+				eV.setSoundWaring(CSound.isSelected());
+
+				StrategySound sS = new StrategySound();
+				StrategyMail sM = new StrategyMail(sS);
+				eV.setsT(sM);
+				// eV.setsT(al);
+
+				eHolder.add(eV);
+				setVisible(false);
+				dispose();
+			}
+		}
+		
+		
+		
+		
+		add.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Calendar cal = Calendar.getInstance();
+				AboutDialog dlg = new AboutDialog(new JFrame(),
+						"Wydarzenie", "Wydarzenie", cal.getTime());
+			}
+			
+		});
+		
+		
+		return jplPanel;
 	}
 
 	protected class Kalendar extends JPanel {
