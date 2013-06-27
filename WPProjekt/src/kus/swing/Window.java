@@ -770,6 +770,11 @@ public class Window extends JFrame {
 		gBC.anchor = GridBagConstraints.CENTER;
 		
 		jplPanel.add(add,gBC);
+		
+		
+		
+		
+		JScrollPane jSP = new JScrollPane();
 		/*
 		 * jplPanel.setPreferredSize(new Dimension(300, 300));
 		 * jplPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -805,7 +810,19 @@ public class Window extends JFrame {
 		 * // jplPanel.add(jButton, gBC);
 		 */
 		
-		
+		class EventShow extends JPanel{
+			Event refEv;
+			JLabel title = new JLabel("Tytu³");
+			JLabel title2;
+			JLabel timeLeft = new JLabel("Czas do");
+			JButton edit = new JButton("Edytuj");
+		    //GridBagLeyout 
+			public EventShow(Event ref){
+				refEv = ref;
+				this.setLayout(new GridBagLayout());
+				title2 = new JLabel(refEv.getTitle());
+			}
+		}
 		
 		class AboutDialog extends JDialog implements ActionListener {
 			public AboutDialog(JFrame parent, String title, String message,

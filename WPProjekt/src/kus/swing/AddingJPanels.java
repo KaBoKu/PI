@@ -105,7 +105,8 @@ public class AddingJPanels {
 			gBC.anchor = GridBagConstraints.NORTH;
 			
 			p.add(jTF);
-			jPl.add(p);
+			PanelMain pM = new PanelMain();
+			jPl.add(pM);
 		}
 		return jPl;
 	}
@@ -114,7 +115,7 @@ public class AddingJPanels {
 
 class PanelMain extends JPanel {
 	JButton b = new JButton("press me");
-	
+	static int l=0;
 	public PanelMain() {
 		this.add(b);
 		b.addActionListener(new ActionListener(){
@@ -122,7 +123,8 @@ class PanelMain extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				System.out.println("Pressed");
+				l+=1;;
+				System.out.println("l :"+l);
 			}
 			
 		});
