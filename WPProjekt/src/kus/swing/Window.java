@@ -89,7 +89,9 @@ public class Window extends JFrame {
 	private JLabel countLabelabout6;
 
 	private JTabbedPane jtbExample;
-
+	private JPanel jplInnerPanel6;
+	private JLabel none ;
+	
 	private JLabel mouseActionLabel;
 	private List<JLabel> JLabelMouseAction = new ArrayList<>();
 	private List<JTextArea> JTextAreaMouseAction = new ArrayList<>();
@@ -189,7 +191,7 @@ public class Window extends JFrame {
 		JPanel jplInnerPanel5 = createOwnerPanel();
 		jtbExample.addTab("Dane u¿ytkownika", null, jplInnerPanel5, "Tab 6");
 
-		JPanel jplInnerPanel6 = createCalendarPanel();
+		jplInnerPanel6 = createCalendarPanel();
 		jtbExample.addTab("Kalendarz", null, jplInnerPanel6, "Tab 7");
 
 		/*
@@ -765,55 +767,28 @@ public class Window extends JFrame {
 		
 		
 		JPanel jplPanel = new JPanel();
+		jplPanel.setLayout(gridBag);
+		
 		
 		gBC.weightx = 0;
 		gBC.weighty =0;
-		gBC.anchor = GridBagConstraints.CENTER;
+		gBC.gridx = 1;
+		gBC.gridy = 0;
+		gBC.anchor = GridBagConstraints.EAST;
 		
 		jplPanel.add(add,gBC);
 		
 		
 		gBC.weightx = 0;
-		gBC.weighty =1;
+		gBC.weighty =0;
+		gBC.gridx = 0;
+		gBC.gridy = 1;
 		gBC.anchor = GridBagConstraints.CENTER;
 		
-		jplPanel.add(makeJSP(makeJPanels()));
+		jplPanel.add(makeJSP(makeJPanels()),gBC);
 		
 		JScrollPane jSP = new JScrollPane();
-		/*
-		 * jplPanel.setPreferredSize(new Dimension(300, 300));
-		 * jplPanel.setBorder(new BevelBorder(BevelBorder.LOWERED));
-		 * 
-		 * jplPanel.setLayout(gridBag); Kalendar kal = new Kalendar(); //
-		 * this.setLayout(new BoxLayout(kal, BoxLayout.X_AXIS));
-		 * kal.setSize(200, 300); kal.setPreferredSize(new Dimension(170, 165));
-		 * jplPanel.add(kal);
-		 * 
-		 * gBC.weightx = 0.5; gBC.weighty = 0.5; gBC.gridx = 0; gBC.gridy = 0;
-		 * gBC.gridwidth = 0; gBC.anchor = GridBagConstraints.CENTER; gBC.ipadx
-		 * = 0; gBC.ipady = 0; kal.setPreferredSize(new Dimension(300, 300));
-		 * kal.setBounds(0, 0, 150, 150); // jplPanel.add(kal, gBC);
-		 * 
-		 * gBC.weightx = 0.5; gBC.weighty = 0.5; gBC.gridx = 0; gBC.gridy = 1;
-		 * gBC.gridwidth = 1; gBC.anchor = GridBagConstraints.WEST;
-		 * 
-		 * // jplPanel.add(name, gBC);
-		 * 
-		 * gBC.weightx = 0.5; gBC.weighty = 0.5; gBC.gridx = 0; gBC.gridy = 2;
-		 * gBC.gridwidth = 1; gBC.anchor = GridBagConstraints.WEST;
-		 * 
-		 * // jplPanel.add(surname, gBC);
-		 * 
-		 * gBC.weightx = 0.5; gBC.weighty = 0.5; gBC.gridx = 0; gBC.gridy = 3;
-		 * gBC.gridwidth = 1; gBC.anchor = GridBagConstraints.WEST;
-		 * 
-		 * // jplPanel.add(phone, gBC);
-		 * 
-		 * gBC.weightx = 0.5; gBC.weighty = 0.5; gBC.gridx = 1; gBC.gridy = 1;
-		 * gBC.gridwidth = 1; gBC.anchor = GridBagConstraints.PAGE_START;
-		 * 
-		 * // jplPanel.add(jButton, gBC);
-		 */
+		
 		
 		class EventShow extends JPanel{
 			Event refEv;
@@ -1024,7 +999,7 @@ public class Window extends JFrame {
 				StrategyMail sM = new StrategyMail(sS);
 				eV.setsT(sM);
 				// eV.setsT(al);
-
+				none.setText("Zmiana");
 				eHolder.add(eV);
 				setVisible(false);
 				dispose();
@@ -1042,6 +1017,7 @@ public class Window extends JFrame {
 				Calendar cal = Calendar.getInstance();
 				AboutDialog dlg = new AboutDialog(new JFrame(),
 						"Wydarzenie", "Wydarzenie", cal.getTime());
+				
 			}
 			
 		});
@@ -1054,7 +1030,7 @@ public class Window extends JFrame {
 		int i = eHolder.size();
 		jPl.setLayout(new GridLayout(i+1,0));
 		if(eHolder.size()==0){
-			JLabel none = new JLabel("Brak jakichkolwiek wydarzeñ");
+			 none = new JLabel("Brak jakichkolwiek wydarzeñ");
 			jPl.setLayout(new GridBagLayout());
 			GridBagConstraints gBC = new GridBagConstraints();
 			gBC.anchor = GridBagConstraints.CENTER;
