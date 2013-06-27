@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -772,7 +773,11 @@ public class Window extends JFrame {
 		jplPanel.add(add,gBC);
 		
 		
+		gBC.weightx = 0;
+		gBC.weighty =1;
+		gBC.anchor = GridBagConstraints.CENTER;
 		
+		jplPanel.add(makeJSP(makeJPanels()));
 		
 		JScrollPane jSP = new JScrollPane();
 		/*
@@ -1044,7 +1049,76 @@ public class Window extends JFrame {
 		
 		return jplPanel;
 	}
-
+	public JPanel makeJPanels(){
+		JPanel jPl = new JPanel();
+		int i = eHolder.size();
+		jPl.setLayout(new GridLayout(i+1,0));
+		if(eHolder.size()==0){
+			JLabel none = new JLabel("Brak jakichkolwiek wydarzeñ");
+			jPl.setLayout(new GridBagLayout());
+			GridBagConstraints gBC = new GridBagConstraints();
+			gBC.anchor = GridBagConstraints.CENTER;
+			jPl.add(none,gBC);
+			return jPl;
+		}else{
+		for(int j=0;j<i;++j){
+			JPanel p = new JPanel();
+			p.setLayout(new GridBagLayout());
+			GridBagConstraints gBC = new GridBagConstraints();
+			JButton b = new JButton("aktualizuj");
+			JLabel lebel = new JLabel();
+			
+			gBC.weightx = 0;
+			gBC.weighty = 0;
+			gBC.gridx = 0;
+			gBC.gridy = 0;
+			gBC.gridwidth = 1;
+			gBC.insets = new Insets(30, 0, 0, 0);
+			gBC.anchor = GridBagConstraints.NORTH;
+			
+			p.add(b,gBC);
+			p.setBorder(BorderFactory.createLineBorder(Color.black));
+			p.setPreferredSize(new Dimension(400,400));
+			lebel = new JLabel("Napis: "+j);
+			
+			gBC.weightx = 0;
+			gBC.weighty = 0;
+			gBC.gridx = 0;
+			gBC.gridy = 1;
+			gBC.gridwidth = 1;
+			gBC.insets = new Insets(30, 0, 0, 0);
+			gBC.anchor = GridBagConstraints.NORTH;
+			
+			p.add(lebel);
+			JTextField jTF = new JTextField("Nic",20);
+			
+			
+			gBC.weightx = 0;
+			gBC.weighty = 0;
+			gBC.gridx = 0;
+			gBC.gridy = 3;
+			gBC.gridwidth = 1;
+			gBC.insets = new Insets(30, 0, 0, 0);
+			gBC.anchor = GridBagConstraints.NORTH;
+			
+			p.add(jTF);
+			PanelMain pM = new PanelMain();
+			jPl.add(pM);
+		}
+		}
+		return jPl;
+		
+		
+		
+	}
+	public JScrollPane makeJSP(JPanel jp){
+		
+		JScrollPane jSP = new JScrollPane(jp);
+		
+		return jSP;
+	}
+	
+	
 	protected class Kalendar extends JPanel {
 		JCalendar jC;
 		JButton jBut;
