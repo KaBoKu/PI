@@ -91,6 +91,7 @@ public class Window extends JFrame {
 	private JTabbedPane jtbExample;
 	private JPanel jplInnerPanel6;
 	private JLabel none ;
+	private JScrollPane scrollEvents;
 	
 	private JLabel mouseActionLabel;
 	private List<JLabel> JLabelMouseAction = new ArrayList<>();
@@ -785,7 +786,8 @@ public class Window extends JFrame {
 		gBC.gridy = 1;
 		gBC.anchor = GridBagConstraints.CENTER;
 		
-		jplPanel.add(makeJSP(makeJPanels()),gBC);
+		scrollEvents = new JScrollPane(makeJPanels());
+		jplPanel.add(scrollEvents,gBC);//makeJSP(makeJPanels()),gBC);
 		
 		JScrollPane jSP = new JScrollPane();
 		
@@ -999,7 +1001,9 @@ public class Window extends JFrame {
 				StrategyMail sM = new StrategyMail(sS);
 				eV.setsT(sM);
 				// eV.setsT(al);
-				none.setText("Zmiana");
+				
+				scrollEvents.setViewportView(makeJPanels());
+				
 				eHolder.add(eV);
 				setVisible(false);
 				dispose();
