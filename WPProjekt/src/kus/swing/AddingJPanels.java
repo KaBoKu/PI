@@ -2,7 +2,11 @@ package kus.swing;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,19 +17,30 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 
 public class AddingJPanels {
 
 	public static void main(String... args) {
 		JFrame jF = new JFrame();
 		PanelMain pM = new PanelMain();
+		JTextArea textAreal = new JTextArea("lalamido", 5, 10);
+		textAreal.setEditable(false);
+		textAreal.setPreferredSize(new Dimension(465, 530));
+		textAreal.setLineWrap(true);
+		textAreal.setBackground(new Color(228, 228, 226));
+		Border br = new BevelBorder(BevelBorder.LOWERED);
+		textAreal.setBorder(br);
+		textAreal.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 16));
 		
 		Panel p = new Panel("sas");
 		JPanel jp = makeJPanel(10);
-		p.setPreferredSize(new Dimension(600,600));
-		JScrollPane scroll = new JScrollPane();
-		scroll.add(jp);
+		p.setPreferredSize(new Dimension(200,200));
+		JScrollPane scroll = new JScrollPane(jp);
+		//scroll.add(textAreal);
 		JScrollBar verticalPane = scroll.getVerticalScrollBar();
 		verticalPane.setValue(verticalPane.getMinimum());
 		verticalPane.setValue(20);
@@ -51,14 +66,44 @@ public class AddingJPanels {
 		
 		for(int j=0;j<i;++j){
 			JPanel p = new JPanel();
-			p.setLayout(new GridLayout(2,2));
+			p.setLayout(new GridBagLayout());
+			GridBagConstraints gBC = new GridBagConstraints();
 			JButton b = new JButton("asa");
-			p.add(b);
+			
+			
+			gBC.weightx = 0;
+			gBC.weighty = 0;
+			gBC.gridx = 0;
+			gBC.gridy = 0;
+			gBC.gridwidth = 1;
+			gBC.insets = new Insets(30, 0, 0, 0);
+			gBC.anchor = GridBagConstraints.NORTH;
+			
+			p.add(b,gBC);
 			p.setBorder(BorderFactory.createLineBorder(Color.black));
 			p.setPreferredSize(new Dimension(400,400));
 			lebel = new JLabel("Napis: "+j);
+			
+			gBC.weightx = 0;
+			gBC.weighty = 0;
+			gBC.gridx = 0;
+			gBC.gridy = 1;
+			gBC.gridwidth = 1;
+			gBC.insets = new Insets(30, 0, 0, 0);
+			gBC.anchor = GridBagConstraints.NORTH;
+			
 			p.add(lebel);
 			JTextField jTF = new JTextField("Nic",20);
+			
+			
+			gBC.weightx = 0;
+			gBC.weighty = 0;
+			gBC.gridx = 0;
+			gBC.gridy = 3;
+			gBC.gridwidth = 1;
+			gBC.insets = new Insets(30, 0, 0, 0);
+			gBC.anchor = GridBagConstraints.NORTH;
+			
 			p.add(jTF);
 			jPl.add(p);
 		}
