@@ -1188,6 +1188,9 @@ public class Window extends JFrame {
 		JLabel timeLeft2 = new JLabel("");
 		JButton edit = new JButton("Edytuj");
 		JButton details = new JButton("Szczególy");
+		
+		
+		
 		DateCountdown dC;
 		GridBagConstraints gBC = new GridBagConstraints(); 
 		public EventShow(Event ref){
@@ -1231,6 +1234,255 @@ public class Window extends JFrame {
 			gBC.gridy = 2;
 			gBC.anchor = GridBagConstraints.WEST;
 			this.add(edit,gBC);
+			
+			
+			details.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+
+					JOptionPane.showMessageDialog(null,
+							refEv.getAbout(), "Szczegó³y: ",
+						    JOptionPane.PLAIN_MESSAGE);
+				}
+				
+			});
+			
+			
+			class AboutDialogInner extends JDialog implements ActionListener {
+				Event evRef;
+				public AboutDialogInner(JFrame parent, String title, String message,
+						Event ev) {
+					/*
+					 * Date start; Date end; boolean emailWaring; boolean
+					 * soundWaring; private String title; String where; String
+					 * about;
+					 */
+
+					super(parent, title, true);
+				    evRef = ev;
+					Date dataInner = ev.getStart();
+					JLabel lDateStart = new JLabel("Pocz¹tek");
+					JLabel lDateEnd = new JLabel("Koniec");
+					JLabel lEmailW = new JLabel("Email powiadomienie");
+					JLabel lSoundW = new JLabel("DŸwiêk powiadomienie");
+					JLabel lTitle = new JLabel("Nazwa");
+					JLabel lWhere = new JLabel("Gdzie");
+					JLabel lAbout = new JLabel("Opis");
+
+					jTDateStart = new JFormattedTextField(new DateFormatter(
+							new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa",
+									Locale.ENGLISH)));
+					jTDateEnd = new JFormattedTextField(new DateFormatter(
+							new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa",
+									Locale.ENGLISH)));
+					jTTitle = new JTextField("Nazwa", 20);
+					jTWhere = new JTextField("Gdzie", 20);
+					jTAbout = new JTextField("Opis", 20);
+
+					jTDateStart.setEditable(true);
+
+					CEmail = new JCheckBox("Email powiadomienie");
+					CSound = new JCheckBox("DŸwiêk powiadomienie");
+
+					JButton jButt = new JButton("Ustaw");
+
+					GridBagLayout gridBag = new GridBagLayout();
+					GridBagConstraints gBC = new GridBagConstraints();
+
+					/*Event e = new Event();
+					eHolder.add(e);*/
+					/*System.out.println("TitleU: "+e.getTitle());
+					System.out.println("AboutU: "+e.getAbout());
+					System.out.println("WhereU: "+e.getWhere());*/
+					if (parent != null) {
+						Dimension parentSize = parent.getSize();
+						Point p = parent.getLocation();
+						setLocation(p.x + parentSize.width / 4, p.y
+								+ parentSize.height / 4);
+					}
+					this.setLayout(gridBag);
+
+					gBC.weightx = 0.5;
+					gBC.weighty = 0.5;
+					gBC.gridx = 0;
+					gBC.gridy = 0;
+					gBC.gridwidth = 1;
+					gBC.anchor = GridBagConstraints.CENTER;
+					// email.setPreferredSize(preferredSize)
+					this.add(lDateStart, gBC);
+
+					gBC.weightx = 0.5;
+					gBC.weighty = 0.5;
+					gBC.gridx = 1;
+					gBC.gridy = 0;
+					gBC.gridwidth = 1;
+					gBC.anchor = GridBagConstraints.WEST;
+					// email.setPreferredSize(preferredSize)
+					jTDateStart.setValue(dataInner);
+					this.add(jTDateStart, gBC);
+
+					gBC.weightx = 0.5;
+					gBC.weighty = 0.5;
+					gBC.gridx = 2;
+					gBC.gridy = 0;
+					gBC.gridwidth = 1;
+					gBC.anchor = GridBagConstraints.CENTER;
+					// email.setPreferredSize(preferredSize)
+					this.add(lDateEnd, gBC);
+
+					gBC.weightx = 0.5;
+					gBC.weighty = 0.5;
+					gBC.gridx = 3;
+					gBC.gridy = 0;
+					gBC.gridwidth = 1;
+					gBC.anchor = GridBagConstraints.WEST;
+					// jTDateEnd.setBounds(135, 34, 187, 19);
+					jTDateEnd.setPreferredSize(new Dimension(150, 20));
+					jTDateEnd.setValue(ev.getEnd());
+					this.add(jTDateEnd, gBC);
+
+					gBC.weightx = 0.5;
+					gBC.weighty = 0.5;
+					gBC.gridx = 0;
+					gBC.gridy = 1;
+					gBC.gridwidth = 1;
+					gBC.anchor = GridBagConstraints.CENTER;
+					// email.setPreferredSize(preferredSize)
+					this.add(lTitle, gBC);
+
+					gBC.weightx = 0.5;
+					gBC.weighty = 0.5;
+					gBC.gridx = 1;
+					gBC.gridy = 1;
+					gBC.gridwidth = 1;
+					gBC.anchor = GridBagConstraints.WEST;
+					jTTitle.setText(ev.getTitle());
+					this.add(jTTitle, gBC);
+
+					gBC.weightx = 0.5;
+					gBC.weighty = 0.5;
+					gBC.gridx = 2;
+					gBC.gridy = 1;
+					gBC.gridwidth = 1;
+					gBC.anchor = GridBagConstraints.CENTER;
+					// email.setPreferredSize(preferredSize)
+					this.add(lWhere, gBC);
+
+					gBC.weightx = 0.5;
+					gBC.weighty = 0.5;
+					gBC.gridx = 3;
+					gBC.gridy = 1;
+					gBC.gridwidth = 1;
+					gBC.anchor = GridBagConstraints.WEST;
+					jTWhere.setText(ev.getWhere());
+					this.add(jTWhere, gBC);
+
+					gBC.weightx = 0.5;
+					gBC.weighty = 0.5;
+					gBC.gridx = 4;
+					gBC.gridy = 1;
+					gBC.gridwidth = 1;
+					gBC.anchor = GridBagConstraints.CENTER;
+					// email.setPreferredSize(preferredSize)
+					this.add(lAbout, gBC);
+
+					gBC.weightx = 0.5;
+					gBC.weighty = 0.5;
+					gBC.gridx = 5;
+					gBC.gridy = 1;
+					gBC.gridwidth = 1;
+					gBC.anchor = GridBagConstraints.WEST;
+					jTAbout.setText(ev.getWhere());
+					this.add(jTAbout, gBC);
+
+					gBC.weightx = 0.5;
+					gBC.weighty = 0.5;
+					gBC.gridx = 0;
+					gBC.gridy = 3;
+					gBC.gridwidth = 1;
+					gBC.anchor = GridBagConstraints.CENTER;
+
+					this.add(jButt, gBC);
+
+					gBC.weightx = 0.5;
+					gBC.weighty = 0.5;
+					gBC.gridx = 1;
+					gBC.gridy = 3;
+					gBC.gridwidth = 1;
+					gBC.anchor = GridBagConstraints.CENTER;
+					this.add(CEmail, gBC);
+
+					gBC.weightx = 0.5;
+					gBC.weighty = 0.5;
+					gBC.gridx = 2;
+					gBC.gridy = 3;
+					gBC.gridwidth = 1;
+					gBC.anchor = GridBagConstraints.CENTER;
+
+					this.add(CSound, gBC);
+
+					JPanel messagePane = new JPanel();
+
+					setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+					this.setSize(990, 150);
+
+					jButt.addActionListener(this);
+
+					setVisible(true);
+				}
+
+				// GridBagLayout gBag = new GridBagLayout();
+				// GridBagConstraints gBC = new GridBagConstraints();
+
+				public void actionPerformed(ActionEvent e) {
+					//Event eV = new Event();
+					evRef.setStart((Date) jTDateStart.getValue());
+					evRef.setEnd((Date) jTDateEnd.getValue());
+					evRef.setAbout(jTAbout.getText());
+					evRef.setTitle(jTTitle.getText());
+					evRef.setWhere(jTWhere.getText());
+
+					evRef.setEmailWaring(CEmail.isSelected());
+					evRef.setSoundWaring(CSound.isSelected());
+
+					StrategySound sS = new StrategySound();
+					StrategyMail sM = new StrategyMail(sS);
+					evRef.setsT(sM);
+					
+					
+					System.out.println("TitleU: "+evRef.getTitle());
+					System.out.println("AboutU: "+evRef.getAbout());
+					System.out.println("WhereU: "+evRef.getWhere());
+					
+					// eV.setsT(al);
+					//eHolder.add(eV);
+					scrollEvents.setViewportView(makeJPanels());
+					
+					
+					setVisible(false);
+					dispose();
+				}
+			}
+			
+			
+			
+			
+			edit.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					//htrhtr
+					
+					AboutDialogInner a = new AboutDialogInner(null,"asa","zzz",refEv);
+					
+					
+					
+				}
+				
+			});
 			
 		}
 	}
@@ -1438,7 +1690,7 @@ public class Window extends JFrame {
 
 				eV.setEmailWaring(CEmail.isSelected());
 				eV.setSoundWaring(CSound.isSelected());
-
+				
 				StrategySound sS = new StrategySound();
 				StrategyMail sM = new StrategyMail(sS);
 				eV.setsT(sM);
