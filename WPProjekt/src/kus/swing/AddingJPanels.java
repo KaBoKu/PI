@@ -111,17 +111,6 @@ public class AddingJPanels {
 	}
 }
 
-class Frame extends JFrame {
-	public Frame() {
-		super("Frame");
-		this.setPreferredSize(new Dimension(200, 200));
-
-	}
-
-	public void see() {
-		this.setVisible(true);
-	}
-}
 
 class PanelMain extends JPanel {
 	JButton b = new JButton("press me");
