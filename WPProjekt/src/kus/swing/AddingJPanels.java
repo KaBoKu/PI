@@ -114,7 +114,7 @@ public class AddingJPanels {
 
 
 class PanelMain extends JPanel {
-	JButton b = new JButton("press me");
+	JButton b = new JButton("press MEEEE");
 	static int l=0;
 	public PanelMain() {
 		this.add(b);

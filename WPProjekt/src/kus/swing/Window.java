@@ -787,6 +787,7 @@ public class Window extends JFrame {
 		gBC.anchor = GridBagConstraints.CENTER;
 		
 		scrollEvents = new JScrollPane(makeJPanels());
+		scrollEvents.setPreferredSize(new Dimension(400,300));
 		jplPanel.add(scrollEvents,gBC);//makeJSP(makeJPanels()),gBC);
 		
 		JScrollPane jSP = new JScrollPane();
@@ -845,8 +846,11 @@ public class Window extends JFrame {
 				GridBagLayout gridBag = new GridBagLayout();
 				GridBagConstraints gBC = new GridBagConstraints();
 
-				Event e = new Event();
-				eHolder.add(e);
+				/*Event e = new Event();
+				eHolder.add(e);*/
+				/*System.out.println("TitleU: "+e.getTitle());
+				System.out.println("AboutU: "+e.getAbout());
+				System.out.println("WhereU: "+e.getWhere());*/
 				if (parent != null) {
 					Dimension parentSize = parent.getSize();
 					Point p = parent.getLocation();
@@ -1000,11 +1004,17 @@ public class Window extends JFrame {
 				StrategySound sS = new StrategySound();
 				StrategyMail sM = new StrategyMail(sS);
 				eV.setsT(sM);
-				// eV.setsT(al);
 				
+				
+				System.out.println("TitleU: "+eV.getTitle());
+				System.out.println("AboutU: "+eV.getAbout());
+				System.out.println("WhereU: "+eV.getWhere());
+				
+				// eV.setsT(al);
+				eHolder.add(eV);
 				scrollEvents.setViewportView(makeJPanels());
 				
-				eHolder.add(eV);
+				
 				setVisible(false);
 				dispose();
 			}
@@ -1032,6 +1042,7 @@ public class Window extends JFrame {
 	public JPanel makeJPanels(){
 		JPanel jPl = new JPanel();
 		int i = eHolder.size();
+		System.out.println("eHolder size: "+i);
 		jPl.setLayout(new GridLayout(i+1,0));
 		if(eHolder.size()==0){
 			 none = new JLabel("Brak jakichkolwiek wydarzeñ");
@@ -1046,8 +1057,11 @@ public class Window extends JFrame {
 			p.setLayout(new GridBagLayout());
 			GridBagConstraints gBC = new GridBagConstraints();
 			JButton b = new JButton("aktualizuj");
-			JLabel lebel = new JLabel();
-			
+			System.out.println("j = "+j);
+			JLabel lebel = new JLabel(eHolder.getByIndex(j).getTitle());
+			System.out.println("Nazwa: "+eHolder.getByIndex(j).getTitle());
+			System.out.println("Opis: "+eHolder.getByIndex(j).getAbout());
+			System.out.println("Gdzie: "+eHolder.getByIndex(j).getWhere());
 			gBC.weightx = 0;
 			gBC.weighty = 0;
 			gBC.gridx = 0;
@@ -1058,8 +1072,8 @@ public class Window extends JFrame {
 			
 			p.add(b,gBC);
 			p.setBorder(BorderFactory.createLineBorder(Color.black));
-			p.setPreferredSize(new Dimension(400,400));
-			lebel = new JLabel("Napis: "+j);
+			p.setPreferredSize(new Dimension(100,100));
+			//lebel = new JLabel("Napis: "+j);
 			
 			gBC.weightx = 0;
 			gBC.weighty = 0;
@@ -1082,8 +1096,8 @@ public class Window extends JFrame {
 			gBC.anchor = GridBagConstraints.NORTH;
 			
 			p.add(jTF);
-			PanelMain pM = new PanelMain();
-			jPl.add(pM);
+			//PanelMain pM = new PanelMain();
+			jPl.add(p);
 		}
 		}
 		return jPl;

@@ -17,7 +17,7 @@ public class Event {
 	String where;
 	String about;
 	boolean isGone;
-    public int id;
+    public static int id = 0;
     private DateCountdown dC;
     private EventState eS;
 
@@ -27,6 +27,7 @@ public class Event {
 
 	public Event(Date start, Date end) {
 		super();
+		id++;
 		this.start = start;
 		this.end = end;
 		if (this.isEvent())this.seteS(new StateAfter(this));
@@ -38,6 +39,7 @@ public class Event {
 	public Event(Date start, Date end, boolean emailWaring,
 			boolean soundWaring, String where, String about, boolean isGone) {
 		super();
+		id++;
 		this.start = start;
 		this.end = end;
 		this.emailWaring = emailWaring;

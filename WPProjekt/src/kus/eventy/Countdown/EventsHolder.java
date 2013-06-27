@@ -19,4 +19,8 @@ public class EventsHolder {
 		return eHolder.size();
 	}
 	
+	public Event getByIndex(int index){
+		return eHolder.get(index);
+	}
+	
 }
