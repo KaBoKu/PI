@@ -516,7 +516,64 @@ public class Window extends JFrame {
 						e1.printStackTrace();
 					}
 				}
-
+				
+				
+				if (miasto.equals("Warszawa")) {
+					try {
+						sWP = new SwingWeahterParser(
+								"http://weather.yahooapis.com/forecastrss?w=498842&u=c",
+								"windows-1250");
+					} catch (UnsupportedEncodingException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				
+				if (miasto.equals("Warszawa")) {
+					try {
+						sWP = new SwingWeahterParser(
+								"http://weather.yahooapis.com/forecastrss?w=523920&u=c",
+								"windows-1250");
+					} catch (UnsupportedEncodingException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				
+				if (miasto.equals("Poznañ")) {
+					try {
+						sWP = new SwingWeahterParser(
+								"http://weather.yahooapis.com/forecastrss?w=12577949&u=c",
+								"windows-1250");
+					} catch (UnsupportedEncodingException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				
+				if (miasto.equals("Szczeciñ")) {
+					try {
+						sWP = new SwingWeahterParser(
+								"http://weather.yahooapis.com/forecastrss?w=12577950&u=c",
+								"windows-1250");
+					} catch (UnsupportedEncodingException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				
+				
+				if (miasto.equals("£ódŸ")) {
+					try {
+						sWP = new SwingWeahterParser(
+								"http://weather.yahooapis.com/forecastrss?w=12577937&u=c",
+								"windows-1250");
+					} catch (UnsupportedEncodingException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				
 				textAreaW.setText(sWP.getXML());
 			}
 
@@ -1128,21 +1185,38 @@ public class Window extends JFrame {
 			
 			gBC.gridx = 0;
 			gBC.gridy = 0;
-			
+			gBC.anchor = GridBagConstraints.LAST_LINE_START;
+			title.setFont(new Font("Verdana",Font.PLAIN,14));
+			gBC.insets = new Insets(0,0,0,0);
 			this.add(title,gBC);
 			
 			gBC.gridx = 1;
 			gBC.gridy = 0;
+			gBC.anchor = GridBagConstraints.EAST;
+			title2.setFont(new Font("Verdana",Font.PLAIN,14));
+			gBC.insets = new Insets(0,0,0,0);
 			this.add(title2,gBC);
 			
 			dC = new DateCountdown(refEv,timeLeft2);
 			
-			gBC.gridx = 2;
-			gBC.gridy = 0;
-			
+			gBC.gridx = 0;
+			gBC.gridy = 1;
+			gBC.weighty = 2;
+			gBC.anchor = GridBagConstraints.EAST;
+			timeLeft2.setFont(new Font("Verdana",Font.PLAIN,16));
+			gBC.insets = new Insets(15,0,10,0);
 			this.add(timeLeft2,gBC);
 			
+			gBC.gridx = 0;
+			gBC.gridy = 2;
+			gBC.weighty = 1;
+			gBC.anchor = GridBagConstraints.WEST;
+			this.add(details,gBC);
 			
+			gBC.gridx = 1;
+			gBC.gridy = 2;
+			gBC.anchor = GridBagConstraints.WEST;
+			this.add(edit,gBC);
 			
 		}
 	}
@@ -1532,7 +1606,7 @@ public class Window extends JFrame {
 		GridBagLayout gridBag = new GridBagLayout();
 		GridBagConstraints gBC = new GridBagConstraints();
 
-		JLabel Info = new JLabel("<html>Informacje<br>"
+		JLabel Info = new JLabel("<html>Informacje:<br>"
 				+ "Aplikacja Infos4u<br>" + "Wykonana przez Kamila Kusia <br>"
 				+ "W ramach projektu indiwualnego" + " </html>");
 		Info.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 23));
@@ -1548,8 +1622,8 @@ public class Window extends JFrame {
 		gBC.gridx = 0;
 		gBC.gridy = 0;
 		gBC.gridwidth = 1;
-		gBC.anchor = GridBagConstraints.NORTH;
-		gBC.insets = new Insets(0, 0, 0, 0);
+		gBC.anchor = GridBagConstraints.CENTER;
+		gBC.insets = new Insets(0, 0, 50, 0);
 		// gBC.fill = GridBagConstraints.HORIZONTAL;
 		// email.setPreferredSize(preferredSize)
 		jplPanel.add(Info, gBC);
