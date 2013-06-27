@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.JLabel;
+
 import kus.eventy.CalendarSet;
 import kus.eventy.Event;
 import kus.eventy.owner.Owner;
@@ -23,7 +25,7 @@ public class DateCountdown {
 	Date endCount;
 	Timer timer;
 	Event eV;
-
+	JLabel refLabel;
 	public DateCountdown() {
 		this.today1 = new Date();
 		this.start = new Date();
@@ -36,11 +38,23 @@ public class DateCountdown {
 		this.today1 = new Date();
 		this.start = eV.getStart();
 		// this.start.setTime(today.getTime()+30000);
+	
 		this.eV = eV;
 		timer = new Timer();
 		timer.schedule(new DCountdownTask(), 0, 1 * 1000);
 	}
 
+	
+	public DateCountdown(Event eV, JLabel ref) {
+		this.today1 = new Date();
+		this.start = eV.getStart();
+		// this.start.setTime(today.getTime()+30000);
+		refLabel = ref;
+		this.eV = eV;
+		timer = new Timer();
+		timer.schedule(new DCountdownTask(), 0, 1 * 1000);
+	}
+	
 	public DateCountdown(Date dt) {
 		this.today1 = new Date();
 		this.start = dt;
@@ -73,6 +87,7 @@ public class DateCountdown {
 				long hour = (date % (24 * 3600 * 1000)) / (3600 * 1000);
 				long minutes = ((date % (24 * 3600 * 1000)) % (3600 * 1000) / (60 * 1000));
 				long sec = ((date % (24 * 3600 * 1000)) % (3600 * 1000) % (60 * 1000)) / (1000);
+				if(refLabel!=null)refLabel.setText("Dni: " + day + " Godzin: " + hour	+ " Minut: " + minutes + " Sekund: " + sec);
 				System.out.println("Days: " + day + " Hours: " + hour
 						+ " Minutes: " + minutes + " Seconds: " + sec
 						+ " => REMAINING");

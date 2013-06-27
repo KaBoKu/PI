@@ -47,6 +47,7 @@ import javax.swing.border.Border;
 import javax.swing.text.DateFormatter;
 
 import kus.eventy.Event;
+import kus.eventy.Countdown.DateCountdown;
 import kus.eventy.Countdown.EventsHolder;
 import kus.eventy.owner.Owner;
 import kus.eventy.strategy.StrategyMail;
@@ -1054,6 +1055,7 @@ public class Window extends JFrame {
 		}else{
 		for(int j=0;j<i;++j){
 			JPanel p = new JPanel();
+			EventShow eS = new EventShow(eHolder.getByIndex(j));
 			p.setLayout(new GridBagLayout());
 			GridBagConstraints gBC = new GridBagConstraints();
 			JButton b = new JButton("aktualizuj");
@@ -1097,7 +1099,7 @@ public class Window extends JFrame {
 			
 			p.add(jTF);
 			//PanelMain pM = new PanelMain();
-			jPl.add(p);
+			jPl.add(eS);
 		}
 		}
 		return jPl;
@@ -1105,6 +1107,46 @@ public class Window extends JFrame {
 		
 		
 	}
+	
+	
+	class EventShow extends JPanel{
+		Event refEv;
+		JLabel title = new JLabel("Tytu³");
+		JLabel title2;
+		JLabel timeLeft = new JLabel("Czas do");
+		JLabel timeLeft2 = new JLabel("");
+		JButton edit = new JButton("Edytuj");
+		JButton details = new JButton("Szczególy");
+		DateCountdown dC;
+		GridBagConstraints gBC = new GridBagConstraints(); 
+		public EventShow(Event ref){
+			refEv = ref;
+			this.setLayout(new GridBagLayout());
+			title2 = new JLabel(refEv.getTitle());
+			this.setBorder(BorderFactory.createLineBorder(Color.black));
+			this.setPreferredSize(new Dimension(100,100));
+			
+			gBC.gridx = 0;
+			gBC.gridy = 0;
+			
+			this.add(title,gBC);
+			
+			gBC.gridx = 1;
+			gBC.gridy = 0;
+			this.add(title2,gBC);
+			
+			dC = new DateCountdown(refEv,timeLeft2);
+			
+			gBC.gridx = 2;
+			gBC.gridy = 0;
+			
+			this.add(timeLeft2,gBC);
+			
+			
+			
+		}
+	}
+	
 	public JScrollPane makeJSP(JPanel jp){
 		
 		JScrollPane jSP = new JScrollPane(jp);
