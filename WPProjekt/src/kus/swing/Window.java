@@ -889,7 +889,7 @@ public class Window extends JFrame {
 				gBC.gridx = 3;
 				gBC.gridy = 0;
 				gBC.gridwidth = 1;
-				gBC.anchor = GridBagConstraints.CENTER;
+				gBC.anchor = GridBagConstraints.WEST;
 				// jTDateEnd.setBounds(135, 34, 187, 19);
 				jTDateEnd.setPreferredSize(new Dimension(150, 20));
 				this.add(jTDateEnd, gBC);
@@ -908,7 +908,7 @@ public class Window extends JFrame {
 				gBC.gridx = 1;
 				gBC.gridy = 1;
 				gBC.gridwidth = 1;
-				gBC.anchor = GridBagConstraints.CENTER;
+				gBC.anchor = GridBagConstraints.WEST;
 
 				this.add(jTTitle, gBC);
 
@@ -926,32 +926,32 @@ public class Window extends JFrame {
 				gBC.gridx = 3;
 				gBC.gridy = 1;
 				gBC.gridwidth = 1;
-				gBC.anchor = GridBagConstraints.CENTER;
+				gBC.anchor = GridBagConstraints.WEST;
 
 				this.add(jTWhere, gBC);
 
-				/*gBC.weightx = 0.5;
+				gBC.weightx = 0.5;
 				gBC.weighty = 0.5;
-				gBC.gridx = 0;
-				gBC.gridy = 8;
+				gBC.gridx = 4;
+				gBC.gridy = 1;
 				gBC.gridwidth = 1;
-				gBC.anchor = GridBagConstraints.PAGE_END;
+				gBC.anchor = GridBagConstraints.CENTER;
 				// email.setPreferredSize(preferredSize)
 				this.add(lAbout, gBC);
 
 				gBC.weightx = 0.5;
 				gBC.weighty = 0.5;
-				gBC.gridx = 0;
-				gBC.gridy = 2;
+				gBC.gridx = 5;
+				gBC.gridy = 1;
 				gBC.gridwidth = 1;
-				gBC.anchor = GridBagConstraints.CENTER;
+				gBC.anchor = GridBagConstraints.WEST;
 
 				this.add(jTAbout, gBC);
 
 				gBC.weightx = 0.5;
 				gBC.weighty = 0.5;
-				gBC.gridx = 1;
-				gBC.gridy = 2;
+				gBC.gridx = 0;
+				gBC.gridy = 3;
 				gBC.gridwidth = 1;
 				gBC.anchor = GridBagConstraints.CENTER;
 
@@ -960,24 +960,24 @@ public class Window extends JFrame {
 				gBC.weightx = 0.5;
 				gBC.weighty = 0.5;
 				gBC.gridx = 1;
-				gBC.gridy = 4;
+				gBC.gridy = 3;
 				gBC.gridwidth = 1;
 				gBC.anchor = GridBagConstraints.CENTER;
 				this.add(CEmail, gBC);
 
 				gBC.weightx = 0.5;
 				gBC.weighty = 0.5;
-				gBC.gridx = 1;
-				gBC.gridy = 5;
+				gBC.gridx = 2;
+				gBC.gridy = 3;
 				gBC.gridwidth = 1;
 				gBC.anchor = GridBagConstraints.CENTER;
 
 				this.add(CSound, gBC);
-*/
+
 				JPanel messagePane = new JPanel();
 
 				setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-				this.setSize(600, 800);
+				this.setSize(990, 150);
 
 				jButt.addActionListener(this);
 
