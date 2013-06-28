@@ -171,6 +171,7 @@ public class Window extends JFrame {
 		 */
 		this.setBounds(300, 300, 700, 450);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("Infos4u");
 		// this.setDefaultLookAndFeelDecorated(true);
 
 		jtbExample = new JTabbedPane();
@@ -575,7 +576,7 @@ public class Window extends JFrame {
 				}
 				System.out.println("Inner " + sWP.getXML());
 				String[] split = sWP.getXML().split("code");
-				System.out.println("split: " + split[1]);
+				//System.out.println("split: " + split[0]);
 				// image = new JLabel(new ImageIcon("abc.jpg")));
 				textAreaW.setText(split[0]);
 			}
@@ -1207,6 +1208,7 @@ public class Window extends JFrame {
 			refEv = ref;
 			this.setLayout(new GridBagLayout());
 			title2 = new JLabel(refEv.getTitle());
+			title = new JLabel("Tytu³ "+refEv.getTitle());
 			//this.setBorder(BorderFactory.createLineBorder(Color.black));
 			this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 			this.setPreferredSize(new Dimension(100, 100));
@@ -1214,17 +1216,18 @@ public class Window extends JFrame {
 			gBC.gridx = 0;
 			gBC.gridy = 0;
 			gBC.anchor = GridBagConstraints.CENTER;
+			gBC.gridwidth = 2;
 			title.setFont(new Font("Verdana", Font.PLAIN, 14));
 			gBC.insets = new Insets(0, 0, 0, 0);
 			this.add(title, gBC);
 
-			gBC.gridx = 1;
+			/*gBC.gridx = 1;
 			gBC.gridy = 0;
 			gBC.anchor = GridBagConstraints.CENTER;
 			title2.setFont(new Font("Verdana", Font.PLAIN, 14));
 			gBC.insets = new Insets(0, 0, 0, 0);
 			this.add(title2, gBC);
-
+*/
 			dC = new DateCountdown(refEv, timeLeft2);
 
 			gBC.gridx = 0;
@@ -1239,11 +1242,12 @@ public class Window extends JFrame {
 			gBC.gridy = 2;
 			gBC.weighty = 1;
 			gBC.anchor = GridBagConstraints.CENTER;
+			gBC.gridwidth = 1;
 			this.add(details, gBC);
 
 			gBC.gridx = 1;
 			gBC.gridy = 2;
-			gBC.anchor = GridBagConstraints.CENTER;
+			gBC.anchor = GridBagConstraints.EAST;
 			this.add(edit, gBC);
 
 			details.addActionListener(new ActionListener() {
@@ -1251,8 +1255,8 @@ public class Window extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-
-					JOptionPane.showMessageDialog(null, refEv.getAbout(),
+					String result = "<html>Opis: "+refEv.getAbout()+"<br> Gdzie: "+refEv.getWhere()+"</html>";
+					JOptionPane.showMessageDialog(null, result/*refEv.getAbout()*/,
 							"Szczegó³y: ", JOptionPane.PLAIN_MESSAGE);
 				}
 
