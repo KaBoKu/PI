@@ -27,7 +27,7 @@ public class RSSYahooWether extends TemplateXML{
 				System.out.println("Temperatura: "+el.getAttribute("chill")+"C");
 				result+="Temperatura: "+el.getAttribute("chill")+"C"+"\n";
 				System.out.println("Prêdkoœæ kierunek: "+el.getAttribute("direction")+" Stopni");
-				result+="Prêdkoœæ kierunek: "+el.getAttribute("direction")+" Stopni"+"\n";
+				result+="Wiatr kierunek: "+el.getAttribute("direction")+" Stopni"+"\n";
 				System.out.println("Prêdkoœæ wiatru: "+el.getAttribute("speed")+"km/h");
 				result+="Prêdkoœæ wiatru: "+el.getAttribute("speed")+"km/h"+"\n";
 			}
@@ -56,8 +56,9 @@ public class RSSYahooWether extends TemplateXML{
 		}
 		System.out.println("system "+Charset.defaultCharset());
 		//System.out.println(result=result+"\ncode "+code);
-		
-		return result+"code "+code;//element.getAttribute("city");
+		result=result.replace("am","przedpo³udniem");
+		result=result.replace("pm","popo³udniu");
+		return result;//element.getAttribute("city");
 	}
 
 	@Override

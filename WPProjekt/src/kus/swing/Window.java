@@ -44,6 +44,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
 import javax.swing.text.DateFormatter;
 
 import kus.eventy.Event;
@@ -91,9 +92,9 @@ public class Window extends JFrame {
 
 	private JTabbedPane jtbExample;
 	private JPanel jplInnerPanel6;
-	private JLabel none ;
+	private JLabel none;
 	private JScrollPane scrollEvents;
-	
+
 	private JLabel mouseActionLabel;
 	private List<JLabel> JLabelMouseAction = new ArrayList<>();
 	private List<JTextArea> JTextAreaMouseAction = new ArrayList<>();
@@ -485,7 +486,7 @@ public class Window extends JFrame {
 		;// = new WeatherParser();
 			// SwingWeahterParser sWP=null;
 		String[] miasta = { "Kraków", "Katowice", "Warszawa", "Poznañ",
-				"Szczeciñ", "£ódŸ" };
+				"Szczecin", "£ódŸ" };
 		JComboBox listaMiast = new JComboBox(miasta);
 		listaMiast.setFont(new Font("Verdana", Font.BOLD, 23));
 
@@ -517,8 +518,7 @@ public class Window extends JFrame {
 						e1.printStackTrace();
 					}
 				}
-				
-				
+
 				if (miasto.equals("Warszawa")) {
 					try {
 						sWP = new SwingWeahterParser(
@@ -529,7 +529,7 @@ public class Window extends JFrame {
 						e1.printStackTrace();
 					}
 				}
-				
+
 				if (miasto.equals("Warszawa")) {
 					try {
 						sWP = new SwingWeahterParser(
@@ -540,7 +540,7 @@ public class Window extends JFrame {
 						e1.printStackTrace();
 					}
 				}
-				
+
 				if (miasto.equals("Poznañ")) {
 					try {
 						sWP = new SwingWeahterParser(
@@ -551,8 +551,8 @@ public class Window extends JFrame {
 						e1.printStackTrace();
 					}
 				}
-				
-				if (miasto.equals("Szczeciñ")) {
+
+				if (miasto.equals("Szczecin")) {
 					try {
 						sWP = new SwingWeahterParser(
 								"http://weather.yahooapis.com/forecastrss?w=12577950&u=c",
@@ -562,8 +562,7 @@ public class Window extends JFrame {
 						e1.printStackTrace();
 					}
 				}
-				
-				
+
 				if (miasto.equals("£ódŸ")) {
 					try {
 						sWP = new SwingWeahterParser(
@@ -574,10 +573,10 @@ public class Window extends JFrame {
 						e1.printStackTrace();
 					}
 				}
-				System.out.println("Inner "+sWP.getXML());
-				String [] split = sWP.getXML().split("code");
-				System.out.println("split: "+split[1]);
-				//image = new JLabel(new ImageIcon("abc.jpg"))); 
+				System.out.println("Inner " + sWP.getXML());
+				String[] split = sWP.getXML().split("code");
+				System.out.println("split: " + split[1]);
+				// image = new JLabel(new ImageIcon("abc.jpg")));
 				textAreaW.setText(split[0]);
 			}
 
@@ -608,7 +607,7 @@ public class Window extends JFrame {
 		textAreaW.setPreferredSize(new Dimension(400, 250));
 		textAreaW.setBackground(new Color(228, 228, 226));
 		textAreaW.setLineWrap(true);
-		textAreaW.setFont(new Font("Verdana", Font.BOLD, 23));
+		textAreaW.setFont(new Font("Verdana", Font.CENTER_BASELINE, 20));
 		jlbDisplay.setHorizontalAlignment(JLabel.CENTER);
 		jplPanel.setLayout(gridBag);
 
@@ -648,19 +647,21 @@ public class Window extends JFrame {
 		gBC.gridx = 1;
 		gBC.gridy = 1;
 		gBC.gridwidth = 1;
+		gBC.insets = new Insets(10, 0, 0, 0);
 		gBC.anchor = GridBagConstraints.PAGE_START;
-		
+
 		jplPanel.add(listaMiast, gBC);
-		
+
 		gBC.weightx = 0.5;
 		gBC.weighty = 0.5;
 		gBC.gridx = 1;
 		gBC.gridy = 2;
 		gBC.gridwidth = 1;
+		gBC.insets = new Insets(0, 0, 0, 0);
 		gBC.anchor = GridBagConstraints.CENTER;
-		
-		//jplPanel.add(info,gBC);
-		
+
+		// jplPanel.add(info,gBC);
+
 		return jplPanel;
 	}
 
@@ -831,54 +832,49 @@ public class Window extends JFrame {
 		GridBagLayout gridBag = new GridBagLayout();
 		GridBagConstraints gBC = new GridBagConstraints();
 		JButton add = new JButton("Dodaj nowe wydarzenie");
-		
 
-		
 		gBC.weightx = 0;
-		gBC.weighty =0;
+		gBC.weighty = 0;
 		gBC.anchor = GridBagConstraints.CENTER;
-		
-		
+
 		JPanel jplPanel = new JPanel();
 		jplPanel.setLayout(gridBag);
-		
-		
+
 		gBC.weightx = 0;
-		gBC.weighty =0;
+		gBC.weighty = 0;
 		gBC.gridx = 1;
 		gBC.gridy = 1;
 		gBC.anchor = GridBagConstraints.NORTH;
-		
-		jplPanel.add(add,gBC);
-		
-		
+
+		jplPanel.add(add, gBC);
+
 		gBC.weightx = 0;
-		gBC.weighty =0;
+		gBC.weighty = 0;
 		gBC.gridx = 0;
 		gBC.gridy = 1;
 		gBC.anchor = GridBagConstraints.CENTER;
-		
+
 		scrollEvents = new JScrollPane(makeJPanels());
-		scrollEvents.setPreferredSize(new Dimension(400,300));
-		jplPanel.add(scrollEvents,gBC);//makeJSP(makeJPanels()),gBC);
-		
+		scrollEvents.setPreferredSize(new Dimension(400, 300));
+		jplPanel.add(scrollEvents, gBC);// makeJSP(makeJPanels()),gBC);
+
 		JScrollPane jSP = new JScrollPane();
-		
-		
-		class EventShow extends JPanel{
+
+		class EventShow extends JPanel {
 			Event refEv;
 			JLabel title = new JLabel("Tytu³");
 			JLabel title2;
 			JLabel timeLeft = new JLabel("Czas do");
 			JButton edit = new JButton("Edytuj");
-		    //GridBagLeyout 
-			public EventShow(Event ref){
+
+			// GridBagLeyout
+			public EventShow(Event ref) {
 				refEv = ref;
 				this.setLayout(new GridBagLayout());
 				title2 = new JLabel(refEv.getTitle());
 			}
 		}
-		
+
 		class AboutDialog extends JDialog implements ActionListener {
 			public AboutDialog(JFrame parent, String title, String message,
 					Date data) {
@@ -918,11 +914,14 @@ public class Window extends JFrame {
 				GridBagLayout gridBag = new GridBagLayout();
 				GridBagConstraints gBC = new GridBagConstraints();
 
-				/*Event e = new Event();
-				eHolder.add(e);*/
-				/*System.out.println("TitleU: "+e.getTitle());
-				System.out.println("AboutU: "+e.getAbout());
-				System.out.println("WhereU: "+e.getWhere());*/
+				/*
+				 * Event e = new Event(); eHolder.add(e);
+				 */
+				/*
+				 * System.out.println("TitleU: "+e.getTitle());
+				 * System.out.println("AboutU: "+e.getAbout());
+				 * System.out.println("WhereU: "+e.getWhere());
+				 */
 				if (parent != null) {
 					Dimension parentSize = parent.getSize();
 					Point p = parent.getLocation();
@@ -1072,115 +1071,127 @@ public class Window extends JFrame {
 
 				eV.setEmailWaring(CEmail.isSelected());
 				eV.setSoundWaring(CSound.isSelected());
-
-				StrategySound sS = new StrategySound();
+				
+				if (CEmail.isSelected() && CSound.isSelected()) {
+					System.out.println("1 sm");
+					StrategySound sS = new StrategySound();
+					StrategyMail sM = new StrategyMail(sS);
+					eV.setsT(sM);
+				}
+				if (CEmail.isSelected() && !CSound.isSelected()) {
+					System.out.println("2 sm");
+					StrategySound sS = new StrategySound();
+					StrategyMail sM = new StrategyMail();
+					eV.setsT(sM);
+				}
+				if (!CEmail.isSelected() && CSound.isSelected()) {
+					System.out.println("3 sm");
+					StrategySound sS = new StrategySound();
+					eV.setsT(sS);
+				}
+				
+				/*StrategySound sS = new StrategySound();
 				StrategyMail sM = new StrategyMail(sS);
-				eV.setsT(sM);
-				
-				
-				System.out.println("TitleU: "+eV.getTitle());
-				System.out.println("AboutU: "+eV.getAbout());
-				System.out.println("WhereU: "+eV.getWhere());
-				
+				eV.setsT(sM);*/
+
+				System.out.println("TitleU: " + eV.getTitle());
+				System.out.println("AboutU: " + eV.getAbout());
+				System.out.println("WhereU: " + eV.getWhere());
+
 				// eV.setsT(al);
 				eHolder.add(eV);
 				scrollEvents.setViewportView(makeJPanels());
-				
-				
+
 				setVisible(false);
 				dispose();
 			}
 		}
-		
-		
-		
-		
-		add.addActionListener(new ActionListener(){
+
+		add.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				Calendar cal = Calendar.getInstance();
-				AboutDialog dlg = new AboutDialog(new JFrame(),
-						"Wydarzenie", "Wydarzenie", cal.getTime());
-				
+				AboutDialog dlg = new AboutDialog(new JFrame(), "Wydarzenie",
+						"Wydarzenie", cal.getTime());
+
 			}
-			
+
 		});
-		
-		
+
 		return jplPanel;
 	}
-	public JPanel makeJPanels(){
+
+	public JPanel makeJPanels() {
 		JPanel jPl = new JPanel();
 		int i = eHolder.size();
-		System.out.println("eHolder size: "+i);
-		jPl.setLayout(new GridLayout(i+1,0));
-		if(eHolder.size()==0){
-			 none = new JLabel("Brak jakichkolwiek wydarzeñ");
+		System.out.println("eHolder size: " + i);
+		jPl.setLayout(new GridLayout(i + 1, 0));
+		if (eHolder.size() == 0) {
+			none = new JLabel("Brak jakichkolwiek wydarzeñ");
 			jPl.setLayout(new GridBagLayout());
 			GridBagConstraints gBC = new GridBagConstraints();
 			gBC.anchor = GridBagConstraints.CENTER;
-			jPl.add(none,gBC);
+			jPl.add(none, gBC);
 			return jPl;
-		}else{
-		for(int j=0;j<i;++j){
-			JPanel p = new JPanel();
-			EventShow eS = new EventShow(eHolder.getByIndex(j));
-			p.setLayout(new GridBagLayout());
-			GridBagConstraints gBC = new GridBagConstraints();
-			JButton b = new JButton("aktualizuj");
-			System.out.println("j = "+j);
-			JLabel lebel = new JLabel(eHolder.getByIndex(j).getTitle());
-			System.out.println("Nazwa: "+eHolder.getByIndex(j).getTitle());
-			System.out.println("Opis: "+eHolder.getByIndex(j).getAbout());
-			System.out.println("Gdzie: "+eHolder.getByIndex(j).getWhere());
-			gBC.weightx = 0;
-			gBC.weighty = 0;
-			gBC.gridx = 0;
-			gBC.gridy = 0;
-			gBC.gridwidth = 1;
-			gBC.insets = new Insets(30, 0, 0, 0);
-			gBC.anchor = GridBagConstraints.NORTH;
-			
-			p.add(b,gBC);
-			p.setBorder(BorderFactory.createLineBorder(Color.black));
-			p.setPreferredSize(new Dimension(100,100));
-			//lebel = new JLabel("Napis: "+j);
-			
-			gBC.weightx = 0;
-			gBC.weighty = 0;
-			gBC.gridx = 0;
-			gBC.gridy = 1;
-			gBC.gridwidth = 1;
-			gBC.insets = new Insets(30, 0, 0, 0);
-			gBC.anchor = GridBagConstraints.NORTH;
-			
-			p.add(lebel);
-			JTextField jTF = new JTextField("Nic",20);
-			
-			
-			gBC.weightx = 0;
-			gBC.weighty = 0;
-			gBC.gridx = 0;
-			gBC.gridy = 3;
-			gBC.gridwidth = 1;
-			gBC.insets = new Insets(30, 0, 0, 0);
-			gBC.anchor = GridBagConstraints.NORTH;
-			
-			p.add(jTF);
-			//PanelMain pM = new PanelMain();
-			jPl.add(eS);
-		}
+		} else {
+			for (int j = 0; j < i; ++j) {
+				JPanel p = new JPanel();
+				EventShow eS = new EventShow(eHolder.getByIndex(j));
+				p.setLayout(new GridBagLayout());
+				GridBagConstraints gBC = new GridBagConstraints();
+				JButton b = new JButton("aktualizuj");
+				System.out.println("j = " + j);
+				JLabel lebel = new JLabel(eHolder.getByIndex(j).getTitle());
+				System.out
+						.println("Nazwa: " + eHolder.getByIndex(j).getTitle());
+				System.out.println("Opis: " + eHolder.getByIndex(j).getAbout());
+				System.out
+						.println("Gdzie: " + eHolder.getByIndex(j).getWhere());
+				gBC.weightx = 0;
+				gBC.weighty = 0;
+				gBC.gridx = 0;
+				gBC.gridy = 0;
+				gBC.gridwidth = 1;
+				gBC.insets = new Insets(30, 0, 0, 0);
+				gBC.anchor = GridBagConstraints.NORTH;
+
+				p.add(b, gBC);
+				//Border createEtchedBorder(int, Color, Color)
+				p.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+				p.setPreferredSize(new Dimension(100, 100));
+				// lebel = new JLabel("Napis: "+j);
+
+				gBC.weightx = 0;
+				gBC.weighty = 0;
+				gBC.gridx = 0;
+				gBC.gridy = 1;
+				gBC.gridwidth = 1;
+				gBC.insets = new Insets(30, 0, 0, 0);
+				gBC.anchor = GridBagConstraints.NORTH;
+
+				p.add(lebel);
+				JTextField jTF = new JTextField("Nic", 20);
+
+				gBC.weightx = 0;
+				gBC.weighty = 0;
+				gBC.gridx = 0;
+				gBC.gridy = 3;
+				gBC.gridwidth = 1;
+				gBC.insets = new Insets(30, 0, 0, 0);
+				gBC.anchor = GridBagConstraints.NORTH;
+
+				p.add(jTF);
+				// PanelMain pM = new PanelMain();
+				jPl.add(eS);
+			}
 		}
 		return jPl;
-		
-		
-		
+
 	}
-	
-	
-	class EventShow extends JPanel{
+
+	class EventShow extends JPanel {
 		Event refEv;
 		JLabel title = new JLabel("Tytu³");
 		JLabel title2;
@@ -1188,72 +1199,70 @@ public class Window extends JFrame {
 		JLabel timeLeft2 = new JLabel("");
 		JButton edit = new JButton("Edytuj");
 		JButton details = new JButton("Szczególy");
-		
-		
-		
+
 		DateCountdown dC;
-		GridBagConstraints gBC = new GridBagConstraints(); 
-		public EventShow(Event ref){
+		GridBagConstraints gBC = new GridBagConstraints();
+
+		public EventShow(Event ref) {
 			refEv = ref;
 			this.setLayout(new GridBagLayout());
 			title2 = new JLabel(refEv.getTitle());
-			this.setBorder(BorderFactory.createLineBorder(Color.black));
-			this.setPreferredSize(new Dimension(100,100));
-			
+			//this.setBorder(BorderFactory.createLineBorder(Color.black));
+			this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+			this.setPreferredSize(new Dimension(100, 100));
+
 			gBC.gridx = 0;
 			gBC.gridy = 0;
-			gBC.anchor = GridBagConstraints.LAST_LINE_START;
-			title.setFont(new Font("Verdana",Font.PLAIN,14));
-			gBC.insets = new Insets(0,0,0,0);
-			this.add(title,gBC);
-			
+			gBC.anchor = GridBagConstraints.CENTER;
+			title.setFont(new Font("Verdana", Font.PLAIN, 14));
+			gBC.insets = new Insets(0, 0, 0, 0);
+			this.add(title, gBC);
+
 			gBC.gridx = 1;
 			gBC.gridy = 0;
-			gBC.anchor = GridBagConstraints.EAST;
-			title2.setFont(new Font("Verdana",Font.PLAIN,14));
-			gBC.insets = new Insets(0,0,0,0);
-			this.add(title2,gBC);
-			
-			dC = new DateCountdown(refEv,timeLeft2);
-			
+			gBC.anchor = GridBagConstraints.CENTER;
+			title2.setFont(new Font("Verdana", Font.PLAIN, 14));
+			gBC.insets = new Insets(0, 0, 0, 0);
+			this.add(title2, gBC);
+
+			dC = new DateCountdown(refEv, timeLeft2);
+
 			gBC.gridx = 0;
 			gBC.gridy = 1;
 			gBC.weighty = 2;
-			gBC.anchor = GridBagConstraints.EAST;
-			timeLeft2.setFont(new Font("Verdana",Font.PLAIN,16));
-			gBC.insets = new Insets(15,0,10,0);
-			this.add(timeLeft2,gBC);
-			
+			gBC.anchor = GridBagConstraints.CENTER;
+			timeLeft2.setFont(new Font("Verdana", Font.PLAIN, 14));
+			gBC.insets = new Insets(0, 0, 0, 0);
+			this.add(timeLeft2, gBC);
+
 			gBC.gridx = 0;
 			gBC.gridy = 2;
 			gBC.weighty = 1;
-			gBC.anchor = GridBagConstraints.WEST;
-			this.add(details,gBC);
-			
+			gBC.anchor = GridBagConstraints.CENTER;
+			this.add(details, gBC);
+
 			gBC.gridx = 1;
 			gBC.gridy = 2;
-			gBC.anchor = GridBagConstraints.WEST;
-			this.add(edit,gBC);
-			
-			
-			details.addActionListener(new ActionListener(){
+			gBC.anchor = GridBagConstraints.CENTER;
+			this.add(edit, gBC);
+
+			details.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
 
-					JOptionPane.showMessageDialog(null,
-							refEv.getAbout(), "Szczegó³y: ",
-						    JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(null, refEv.getAbout(),
+							"Szczegó³y: ", JOptionPane.PLAIN_MESSAGE);
 				}
-				
+
 			});
-			
-			
+
 			class AboutDialogInner extends JDialog implements ActionListener {
 				Event evRef;
-				public AboutDialogInner(JFrame parent, String title, String message,
-						Event ev) {
+
+				public AboutDialogInner(JFrame parent, String title,
+						String message, Event ev) {
 					/*
 					 * Date start; Date end; boolean emailWaring; boolean
 					 * soundWaring; private String title; String where; String
@@ -1261,7 +1270,7 @@ public class Window extends JFrame {
 					 */
 
 					super(parent, title, true);
-				    evRef = ev;
+					evRef = ev;
 					Date dataInner = ev.getStart();
 					JLabel lDateStart = new JLabel("Pocz¹tek");
 					JLabel lDateEnd = new JLabel("Koniec");
@@ -1291,11 +1300,14 @@ public class Window extends JFrame {
 					GridBagLayout gridBag = new GridBagLayout();
 					GridBagConstraints gBC = new GridBagConstraints();
 
-					/*Event e = new Event();
-					eHolder.add(e);*/
-					/*System.out.println("TitleU: "+e.getTitle());
-					System.out.println("AboutU: "+e.getAbout());
-					System.out.println("WhereU: "+e.getWhere());*/
+					/*
+					 * Event e = new Event(); eHolder.add(e);
+					 */
+					/*
+					 * System.out.println("TitleU: "+e.getTitle());
+					 * System.out.println("AboutU: "+e.getAbout());
+					 * System.out.println("WhereU: "+e.getWhere());
+					 */
 					if (parent != null) {
 						Dimension parentSize = parent.getSize();
 						Point p = parent.getLocation();
@@ -1437,7 +1449,7 @@ public class Window extends JFrame {
 				// GridBagConstraints gBC = new GridBagConstraints();
 
 				public void actionPerformed(ActionEvent e) {
-					//Event eV = new Event();
+					// Event eV = new Event();
 					evRef.setStart((Date) jTDateStart.getValue());
 					evRef.setEnd((Date) jTDateEnd.getValue());
 					evRef.setAbout(jTAbout.getText());
@@ -1446,55 +1458,62 @@ public class Window extends JFrame {
 
 					evRef.setEmailWaring(CEmail.isSelected());
 					evRef.setSoundWaring(CSound.isSelected());
+					if (CEmail.isSelected() && CSound.isSelected()) {
+						System.out.println("1 sm");
+						StrategySound sS = new StrategySound();
+						StrategyMail sM = new StrategyMail(sS);
+						evRef.setsT(sM);
+					}
+					if (CEmail.isSelected() && !CSound.isSelected()) {
+						System.out.println("2 sm");
+						StrategySound sS = new StrategySound();
+						StrategyMail sM = new StrategyMail();
+						evRef.setsT(sM);
+					}
+					if (!CEmail.isSelected() && CSound.isSelected()) {
+						System.out.println("3 sm");
+						StrategySound sS = new StrategySound();
+						evRef.setsT(sS);
+					}
+					// ghtrhrthrt
 
-					StrategySound sS = new StrategySound();
-					StrategyMail sM = new StrategyMail(sS);
-					evRef.setsT(sM);
-					ghtrhrthrt
-					
-					System.out.println("TitleU: "+evRef.getTitle());
-					System.out.println("AboutU: "+evRef.getAbout());
-					System.out.println("WhereU: "+evRef.getWhere());
-					
+					System.out.println("TitleU: " + evRef.getTitle());
+					System.out.println("AboutU: " + evRef.getAbout());
+					System.out.println("WhereU: " + evRef.getWhere());
+
 					// eV.setsT(al);
-					//eHolder.add(eV);
+					// eHolder.add(eV);
 					scrollEvents.setViewportView(makeJPanels());
-					
-					
+
 					setVisible(false);
 					dispose();
 				}
 			}
-			
-			
-			
-			
-			edit.addActionListener(new ActionListener(){
+
+			edit.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					//htrhtr
-					
-					AboutDialogInner a = new AboutDialogInner(null,"asa","zzz",refEv);
-					
-					
-					
+					// htrhtr
+
+					AboutDialogInner a = new AboutDialogInner(null, "asa",
+							"zzz", refEv);
+
 				}
-				
+
 			});
-			
+
 		}
 	}
-	
-	public JScrollPane makeJSP(JPanel jp){
-		
+
+	public JScrollPane makeJSP(JPanel jp) {
+
 		JScrollPane jSP = new JScrollPane(jp);
-		
+
 		return jSP;
 	}
-	
-	
+
 	protected class Kalendar extends JPanel {
 		JCalendar jC;
 		JButton jBut;
@@ -1691,9 +1710,27 @@ public class Window extends JFrame {
 				eV.setEmailWaring(CEmail.isSelected());
 				eV.setSoundWaring(CSound.isSelected());
 				
-				StrategySound sS = new StrategySound();
+				if (CEmail.isSelected() && CSound.isSelected()) {
+					System.out.println("1 sm");
+					StrategySound sS = new StrategySound();
+					StrategyMail sM = new StrategyMail(sS);
+					eV.setsT(sM);
+				}
+				if (CEmail.isSelected() && !CSound.isSelected()) {
+					System.out.println("2 sm");
+					StrategySound sS = new StrategySound();
+					StrategyMail sM = new StrategyMail();
+					eV.setsT(sM);
+				}
+				if (!CEmail.isSelected() && CSound.isSelected()) {
+					System.out.println("3 sm");
+					StrategySound sS = new StrategySound();
+					eV.setsT(sS);
+				}
+				
+				/*StrategySound sS = new StrategySound();
 				StrategyMail sM = new StrategyMail(sS);
-				eV.setsT(sM);
+				eV.setsT(sM);*/
 				// eV.setsT(al);
 
 				eHolder.add(eV);
@@ -1935,8 +1972,8 @@ public class Window extends JFrame {
 		gBC.anchor = GridBagConstraints.NORTH;
 		gBC.insets = new Insets(0, 0, 0, 0);
 
-		jPanel.add(DataStart,gBC);
-		
+		jPanel.add(DataStart, gBC);
+
 		gBC.weightx = 0.5;
 		gBC.weighty = 0.5;
 		gBC.gridx = 2;
@@ -1944,9 +1981,9 @@ public class Window extends JFrame {
 		gBC.gridwidth = 1;
 		gBC.anchor = GridBagConstraints.NORTH;
 		gBC.insets = new Insets(0, 0, 0, 0);
-		
-		jPanel.add(End,gBC);
-		
+
+		jPanel.add(End, gBC);
+
 		gBC.weightx = 0.5;
 		gBC.weighty = 0.5;
 		gBC.gridx = 3;
@@ -1954,9 +1991,9 @@ public class Window extends JFrame {
 		gBC.gridwidth = 1;
 		gBC.anchor = GridBagConstraints.NORTH;
 		gBC.insets = new Insets(0, 0, 0, 0);
-		
-		jPanel.add(DataEnd,gBC);
-		
+
+		jPanel.add(DataEnd, gBC);
+
 		gBC.weightx = 0.5;
 		gBC.weighty = 0.5;
 		gBC.gridx = 0;
@@ -1964,9 +2001,9 @@ public class Window extends JFrame {
 		gBC.gridwidth = 1;
 		gBC.anchor = GridBagConstraints.NORTH;
 		gBC.insets = new Insets(0, 0, 0, 0);
-		
-		jPanel.add(Title,gBC);
-		
+
+		jPanel.add(Title, gBC);
+
 		gBC.weightx = 0.5;
 		gBC.weighty = 0.5;
 		gBC.gridx = 1;
@@ -1974,9 +2011,9 @@ public class Window extends JFrame {
 		gBC.gridwidth = 1;
 		gBC.anchor = GridBagConstraints.NORTH;
 		gBC.insets = new Insets(0, 0, 0, 0);
-		
-		jPanel.add(TitleField,gBC);
-		
+
+		jPanel.add(TitleField, gBC);
+
 		gBC.weightx = 0.5;
 		gBC.weighty = 0.5;
 		gBC.gridx = 2;
@@ -1984,9 +2021,9 @@ public class Window extends JFrame {
 		gBC.gridwidth = 1;
 		gBC.anchor = GridBagConstraints.NORTH;
 		gBC.insets = new Insets(0, 0, 0, 0);
-		
-		jPanel.add(About,gBC);
-		
+
+		jPanel.add(About, gBC);
+
 		gBC.weightx = 0.5;
 		gBC.weighty = 0.5;
 		gBC.gridx = 3;
@@ -1994,9 +2031,9 @@ public class Window extends JFrame {
 		gBC.gridwidth = 1;
 		gBC.anchor = GridBagConstraints.NORTH;
 		gBC.insets = new Insets(0, 0, 0, 0);
-		
-		jPanel.add(AboutField,gBC);
-		
+
+		jPanel.add(AboutField, gBC);
+
 		gBC.weightx = 0.5;
 		gBC.weighty = 0.5;
 		gBC.gridx = 0;
@@ -2004,10 +2041,9 @@ public class Window extends JFrame {
 		gBC.gridwidth = 1;
 		gBC.anchor = GridBagConstraints.NORTH;
 		gBC.insets = new Insets(0, 0, 0, 0);
-		
-		jPanel.add(Where,gBC);
-		
-		
+
+		jPanel.add(Where, gBC);
+
 		gBC.weightx = 0.5;
 		gBC.weighty = 0.5;
 		gBC.gridx = 1;
@@ -2015,10 +2051,10 @@ public class Window extends JFrame {
 		gBC.gridwidth = 1;
 		gBC.anchor = GridBagConstraints.NORTH;
 		gBC.insets = new Insets(0, 0, 0, 0);
-		
-		jPanel.add(WhereField,gBC);
-		
-		jPanel.setPreferredSize(new Dimension(200,200));
+
+		jPanel.add(WhereField, gBC);
+
+		jPanel.setPreferredSize(new Dimension(200, 200));
 		jPanel.setSize(200, 200);
 		jPanel.setBackground(Color.BLUE);
 		return jPanel;
