@@ -1450,7 +1450,7 @@ public class Window extends JFrame {
 					StrategySound sS = new StrategySound();
 					StrategyMail sM = new StrategyMail(sS);
 					evRef.setsT(sM);
-					
+					ghtrhrthrt
 					
 					System.out.println("TitleU: "+evRef.getTitle());
 					System.out.println("AboutU: "+evRef.getAbout());
