@@ -130,7 +130,7 @@ public class Window extends JFrame {
 
 					
 					//  try { 
-						  SplashScreen splash = SplashScreen.getSplashScreen(); if (splash == null)
+				/*		  SplashScreen splash = SplashScreen.getSplashScreen(); if (splash == null)
 							  System.out.println("null");
 					  
 					 Graphics2D g = (Graphics2D) splash.createGraphics();
@@ -144,7 +144,7 @@ public class Window extends JFrame {
 					  catch (InterruptedException ignored) {
 					  
 					  } 
-					 }
+					 }*/
 
 					Window window = new Window();
 					window.setVisible(true);
