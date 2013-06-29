@@ -5,12 +5,14 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Point;
+import java.awt.SplashScreen;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -126,27 +128,30 @@ public class Window extends JFrame {
 			public void run() {
 				try {
 
-					/*
-					 * try { //SplashScreen splash =
-					 * SplashScreen.getSplashScreen(); if (splash == null)
-					 * System.out.println("null");
-					 * 
-					 * //Graphics2D g = (Graphics2D) splash.createGraphics();
-					 * 
-					 * //Dimension dim = splash.getSize(); for (int i = 0; i <
-					 * 1000; i++) { // g.setColor(Color.RED); //g.fillRect(50,
-					 * 350, i / 2 - 70, 20); //splash.update(); ////try { //
-					 * Thread.sleep(5); } catch (InterruptedException ignored) {
-					 * 
-					 * } }
-					 */
+					
+					//  try { 
+						  SplashScreen splash = SplashScreen.getSplashScreen(); if (splash == null)
+							  System.out.println("null");
+					  
+					 Graphics2D g = (Graphics2D) splash.createGraphics();
+					  
+					 Dimension dim = splash.getSize(); 
+					 for (int i = 0; i < 1000; i++) {  
+						 g.setColor(Color.RED); g.fillRect(50,350, i / 2 - 70, 20); splash.update();
+					   
+					  try { 
+					  Thread.sleep(5); } 
+					  catch (InterruptedException ignored) {
+					  
+					  } 
+					 }
 
 					Window window = new Window();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
+				}
 		});
 	}
 
@@ -576,7 +581,7 @@ public class Window extends JFrame {
 				}
 				System.out.println("Inner " + sWP.getXML());
 				String[] split = sWP.getXML().split("code");
-				//System.out.println("split: " + split[0]);
+				// System.out.println("split: " + split[0]);
 				// image = new JLabel(new ImageIcon("abc.jpg")));
 				textAreaW.setText(split[0]);
 			}
@@ -1072,7 +1077,7 @@ public class Window extends JFrame {
 
 				eV.setEmailWaring(CEmail.isSelected());
 				eV.setSoundWaring(CSound.isSelected());
-				
+
 				if (CEmail.isSelected() && CSound.isSelected()) {
 					System.out.println("1 sm");
 					StrategySound sS = new StrategySound();
@@ -1090,10 +1095,11 @@ public class Window extends JFrame {
 					StrategySound sS = new StrategySound();
 					eV.setsT(sS);
 				}
-				
-				/*StrategySound sS = new StrategySound();
-				StrategyMail sM = new StrategyMail(sS);
-				eV.setsT(sM);*/
+
+				/*
+				 * StrategySound sS = new StrategySound(); StrategyMail sM = new
+				 * StrategyMail(sS); eV.setsT(sM);
+				 */
 
 				System.out.println("TitleU: " + eV.getTitle());
 				System.out.println("AboutU: " + eV.getAbout());
@@ -1159,8 +1165,9 @@ public class Window extends JFrame {
 				gBC.anchor = GridBagConstraints.NORTH;
 
 				p.add(b, gBC);
-				//Border createEtchedBorder(int, Color, Color)
-				p.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+				// Border createEtchedBorder(int, Color, Color)
+				p.setBorder(BorderFactory
+						.createEtchedBorder(EtchedBorder.LOWERED));
 				p.setPreferredSize(new Dimension(100, 100));
 				// lebel = new JLabel("Napis: "+j);
 
@@ -1208,9 +1215,10 @@ public class Window extends JFrame {
 			refEv = ref;
 			this.setLayout(new GridBagLayout());
 			title2 = new JLabel(refEv.getTitle());
-			title = new JLabel("Tytu³ "+refEv.getTitle());
-			//this.setBorder(BorderFactory.createLineBorder(Color.black));
-			this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+			title = new JLabel("Tytu³ " + refEv.getTitle());
+			// this.setBorder(BorderFactory.createLineBorder(Color.black));
+			this.setBorder(BorderFactory
+					.createEtchedBorder(EtchedBorder.LOWERED));
 			this.setPreferredSize(new Dimension(100, 100));
 
 			gBC.gridx = 0;
@@ -1221,13 +1229,12 @@ public class Window extends JFrame {
 			gBC.insets = new Insets(0, 0, 0, 0);
 			this.add(title, gBC);
 
-			/*gBC.gridx = 1;
-			gBC.gridy = 0;
-			gBC.anchor = GridBagConstraints.CENTER;
-			title2.setFont(new Font("Verdana", Font.PLAIN, 14));
-			gBC.insets = new Insets(0, 0, 0, 0);
-			this.add(title2, gBC);
-*/
+			/*
+			 * gBC.gridx = 1; gBC.gridy = 0; gBC.anchor =
+			 * GridBagConstraints.CENTER; title2.setFont(new Font("Verdana",
+			 * Font.PLAIN, 14)); gBC.insets = new Insets(0, 0, 0, 0);
+			 * this.add(title2, gBC);
+			 */
 			dC = new DateCountdown(refEv, timeLeft2);
 
 			gBC.gridx = 0;
@@ -1255,9 +1262,11 @@ public class Window extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					String result = "<html>Opis: "+refEv.getAbout()+"<br> Gdzie: "+refEv.getWhere()+"</html>";
-					JOptionPane.showMessageDialog(null, result/*refEv.getAbout()*/,
-							"Szczegó³y: ", JOptionPane.PLAIN_MESSAGE);
+					String result = "<html>Opis: " + refEv.getAbout()
+							+ "<br> Gdzie: " + refEv.getWhere() + "</html>";
+					JOptionPane.showMessageDialog(null,
+							result/* refEv.getAbout() */, "Szczegó³y: ",
+							JOptionPane.PLAIN_MESSAGE);
 				}
 
 			});
@@ -1713,7 +1722,7 @@ public class Window extends JFrame {
 
 				eV.setEmailWaring(CEmail.isSelected());
 				eV.setSoundWaring(CSound.isSelected());
-				
+
 				if (CEmail.isSelected() && CSound.isSelected()) {
 					System.out.println("1 sm");
 					StrategySound sS = new StrategySound();
@@ -1731,10 +1740,11 @@ public class Window extends JFrame {
 					StrategySound sS = new StrategySound();
 					eV.setsT(sS);
 				}
-				
-				/*StrategySound sS = new StrategySound();
-				StrategyMail sM = new StrategyMail(sS);
-				eV.setsT(sM);*/
+
+				/*
+				 * StrategySound sS = new StrategySound(); StrategyMail sM = new
+				 * StrategyMail(sS); eV.setsT(sM);
+				 */
 				// eV.setsT(al);
 
 				eHolder.add(eV);
