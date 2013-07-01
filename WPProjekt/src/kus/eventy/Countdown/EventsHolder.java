@@ -23,4 +23,12 @@ public class EventsHolder {
 		return eHolder.get(index);
 	}
 	
+	public void delete(Event e){
+		for(Event eV : eHolder){
+			
+		}
+		eHolder.remove(e);
+	}
+	
+	
 }

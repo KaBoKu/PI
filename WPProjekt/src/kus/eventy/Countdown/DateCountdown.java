@@ -47,7 +47,7 @@ public class DateCountdown {
 		refLabel = ref;
 		this.eV = eV;
 		timer = new Timer();
-		timer.schedule(new DCountdownTask(), 0, 1 * 1000);
+		timer.schedule(new DCountdownTaskLabel(), 0, 1 * 1000);
 	}
 	
 	public DateCountdown(Date dt) {
@@ -84,10 +84,30 @@ public class DateCountdown {
 				long hour = (date % (24 * 3600 * 1000)) / (3600 * 1000);
 				long minutes = ((date % (24 * 3600 * 1000)) % (3600 * 1000) / (60 * 1000));
 				long sec = ((date % (24 * 3600 * 1000)) % (3600 * 1000) % (60 * 1000)) / (1000);
-				if(refLabel!=null)refLabel.setText("Dni: " + day + " Godzin: " + hour	+ " Minut: " + minutes + " Sekund: " + sec);
+				//if(refLabel!=null)refLabel.setText("Dni: " + day + " Godzin: " + hour	+ " Minut: " + minutes + " Sekund: " + sec);
 				/*System.out.println("Days: " + day + " Hours: " + hour
 						+ " Minutes: " + minutes + " Seconds: " + sec
 						+ " => REMAINING");*/
+			}
+		}
+
+	}
+	
+	
+	class DCountdownTaskLabel extends TimerTask {
+		public void run() {
+			today1 = new Date();
+			long date = start.getTime() - 
+					today1.getTime();
+			if (date <= 0) {
+				timer.cancel();
+			} else {
+				long day = date / (24 * 3600 * 1000);
+				long hour = (date % (24 * 3600 * 1000)) / (3600 * 1000);
+				long minutes = ((date % (24 * 3600 * 1000)) % (3600 * 1000) / (60 * 1000));
+				long sec = ((date % (24 * 3600 * 1000)) % (3600 * 1000) % (60 * 1000)) / (1000);
+				if(refLabel!=null)refLabel.setText("Dni: " + day + " Godzin: " + hour	+ " Minut: " + minutes + " Sekund: " + sec);
+
 			}
 		}
 

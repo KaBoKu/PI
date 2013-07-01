@@ -1207,7 +1207,8 @@ public class Window extends JFrame {
 		JLabel timeLeft2 = new JLabel("");
 		JButton edit = new JButton("Edytuj");
 		JButton details = new JButton("Szczególy");
-
+		JButton delete = new JButton("Usuñ");
+		
 		DateCountdown dC;
 		GridBagConstraints gBC = new GridBagConstraints();
 
@@ -1223,7 +1224,7 @@ public class Window extends JFrame {
 
 			gBC.gridx = 0;
 			gBC.gridy = 0;
-			gBC.anchor = GridBagConstraints.CENTER;
+			gBC.anchor = GridBagConstraints.WEST;
 			gBC.gridwidth = 2;
 			title.setFont(new Font("Verdana", Font.PLAIN, 14));
 			gBC.insets = new Insets(0, 0, 0, 0);
@@ -1250,13 +1251,20 @@ public class Window extends JFrame {
 			gBC.weighty = 1;
 			gBC.anchor = GridBagConstraints.CENTER;
 			gBC.gridwidth = 1;
+			gBC.insets = new Insets(0, 0, 0, 105);
 			this.add(details, gBC);
 
 			gBC.gridx = 1;
 			gBC.gridy = 2;
 			gBC.anchor = GridBagConstraints.EAST;
+			gBC.insets = new Insets(0, 0, 0, 0);
 			this.add(edit, gBC);
-
+			
+			
+			gBC.gridx = 2;
+			gBC.gridy = 2;
+			gBC.anchor =  GridBagConstraints.EAST;
+			this.add(delete,gBC);
 			details.addActionListener(new ActionListener() {
 
 				@Override
