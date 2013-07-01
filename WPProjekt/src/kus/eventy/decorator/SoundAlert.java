@@ -6,6 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
@@ -37,9 +41,12 @@ public class SoundAlert extends AlertDecorator {
         System.out.println("Sound");
         InputStream in;
     		try {
-    			in = new FileInputStream(new File("D:\\Alarm\\Alarm.wav"));
-    			AudioStream as = new AudioStream(in);
-    			AudioPlayer.player.start(as);  
+    			
+    			InputStream is= getClass().getResourceAsStream("Alarm.wav");
+    			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(is);
+    			//in = new FileInputStream(new File("D:\\Alarm\\Alarm.wav"));
+    			//AudioStream as = new AudioStream(in);
+    			AudioPlayer.player.start(audioInputStream);  
     		} catch (FileNotFoundException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
@@ -48,7 +55,10 @@ public class SoundAlert extends AlertDecorator {
      catch (IOException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
-    		}
+    		} catch (UnsupportedAudioFileException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
         if(al!=null)al.alert();
     }
 }
