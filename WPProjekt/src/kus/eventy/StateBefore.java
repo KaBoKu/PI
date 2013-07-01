@@ -18,7 +18,11 @@ public class StateBefore implements EventState {
 		//own.getEmail();
 		own = Owner.INSTANCE;
 		System.out.println("nuiohuiu "+own.getEmail());
-		eV.getsT().Alert(own.getEmail(), eV.getTitle(), "Ju¿ nie d³ugo!");
+		eV.getsT()
+		.Alert(
+				own.getEmail(), 
+				eV.getTitle(), 
+				"Ju¿ nie d³ugo!");
 	}
 
 }

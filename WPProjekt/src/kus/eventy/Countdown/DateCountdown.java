@@ -1,18 +1,13 @@
 package kus.eventy.Countdown;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.JLabel;
 
-import kus.eventy.CalendarSet;
 import kus.eventy.Event;
-import kus.eventy.owner.Owner;
-import kus.eventy.strategy.StrategyMail;
-import kus.eventy.strategy.StrategySound;
+import kus.eventy.StateAfter;
 
 /**
  * Created with IntelliJ IDEA. User: Boloczek Date: 31.05.13 Time: 18:00 To
@@ -73,14 +68,16 @@ public class DateCountdown {
 			today1 = new Date();
 			long date = start.getTime() - 
 					today1.getTime();
-			System.out.println(start.getTime());
-			System.out.println(today1.getTime());
+			//System.out.println(start.getTime());
+			//System.out.println(today1.getTime());
 			
-			System.out.println();
+		//	System.out.println();
 			if (date <= 0) {
 				System.out.println("Countdown FINISHED!!!!");
 				//super.eV.makeAlarm();
 				eV.makeAlarm();
+				StateAfter eS = new StateAfter(eV);
+				eV.seteS(eS);
 				timer.cancel();
 			} else {
 				long day = date / (24 * 3600 * 1000);
@@ -88,15 +85,15 @@ public class DateCountdown {
 				long minutes = ((date % (24 * 3600 * 1000)) % (3600 * 1000) / (60 * 1000));
 				long sec = ((date % (24 * 3600 * 1000)) % (3600 * 1000) % (60 * 1000)) / (1000);
 				if(refLabel!=null)refLabel.setText("Dni: " + day + " Godzin: " + hour	+ " Minut: " + minutes + " Sekund: " + sec);
-				System.out.println("Days: " + day + " Hours: " + hour
+				/*System.out.println("Days: " + day + " Hours: " + hour
 						+ " Minutes: " + minutes + " Seconds: " + sec
-						+ " => REMAINING");
+						+ " => REMAINING");*/
 			}
 		}
 
 	}
 
-	public static void main(String... args) {
+/*	public static void main(String... args) {
 		// DateCountdown dC = new DateCountdown();
 		Owner owner = Owner.INSTANCE;
 		owner.setEmail("kk.up.krk@gmail.com");
@@ -143,5 +140,5 @@ public class DateCountdown {
 			e1.setAbout("Tu jest about");
 			e1.setTitle("nie ma nic");
 		 eH.add(e1);
-	}
+	}*/
 }
