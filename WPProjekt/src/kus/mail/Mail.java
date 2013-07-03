@@ -29,12 +29,12 @@ public class Mail {
 
     public void send(String tresc, String temat, String odKogo, String doKogo) throws UnsupportedEncodingException, GeneralSecurityException {
 
-        final String username = "kk.up.krk@gmail.com";
-        final String password = "2004wsp2004";
+        final String username = "przypominienie@gmail.com";
+        final String password = "pppppppppppppppppppppppppp";
 
         InternetAddress[] tto = null;
         try {
-            tto = InternetAddress.parse(doKogo);//("kk.up.krk@gmail.com, wse_kk@interia.pl,anmiks05@gmail.com");
+            tto = InternetAddress.parse(doKogo);
         } catch (AddressException ex) {
             ex.printStackTrace();
         }
@@ -73,16 +73,7 @@ public class Mail {
             Message message = new MimeMessage(session);
             Date d = new Date();
             DateFormat df = new SimpleDateFormat("MMM dd,yyyy HH:mm");
-            /*try {
-                d = df.parse("wrz 09,2012 20:24");
-            } catch (ParseException ex) {
-                ex.printStackTrace();
-            }
-            String[] to = {"wse_kk@interia.pl", "kk.up.krk@gmail.com"};
-            InternetAddress[] addressTo = new InternetAddress[to.length];
-            for (int i = 0; i < to.length; i++) {
-                addressTo[i] = new InternetAddress(to[i]);
-            }*/
+          
             message.setFrom(new InternetAddress(odKogo));
             //message.setRecipients(Message.RecipientType.TO,
             //        InternetAddress.parse(doKogo));
@@ -210,91 +201,11 @@ public class Mail {
             throw new RuntimeException(e);
         }
     }
-    /*
-    public void send(String tresc, String temat, String odKogo, String doKogo, String plik) {
 
-        final String username = "kk.up.krk@gmail.com";
-        final String password = "2004wsp2004";
-
-
-        Properties props = new Properties();
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");
-
-        Session session = Session.getInstance(props,
-                new javax.mail.Authenticator() {
-
-                    @Override
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password);
-                    }
-                });
-
-        try {
-
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(odKogo));
-            message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse(doKogo));
-            message.setSubject(temat);
-            //message.setText(tresc);
-
-            // Create the message part 
-            BodyPart messageBodyPart = new MimeBodyPart();
-
-            // Fill the message
-            messageBodyPart.setText("This is message body");
-
-            // Create a multipar message
-            Multipart multipart = new MimeMultipart();
-
-            // Set text message part
-            multipart.addBodyPart(messageBodyPart);
-
-            // Part two is attachment
-            messageBodyPart = new MimeBodyPart();
-            String filename = "E:/file.txt";
-            DataSource source = new FileDataSource(filename);
-            messageBodyPart.setDataHandler(new DataHandler(source));
-            //messageBodyPart.setFileName(filename);
-            messageBodyPart.setFileName("file.txt");
-            multipart.addBodyPart(messageBodyPart);
-            message.setContent(multipart);
-
-            messageBodyPart = new MimeBodyPart();
-            filename = "E:/linki.txt";
-            source = new FileDataSource(filename);
-            messageBodyPart.setDataHandler(new DataHandler(source));
-            //messageBodyPart.setFileName(filename);
-            messageBodyPart.setFileName("linki.txt");
-            multipart.addBodyPart(messageBodyPart);
-
-            // Send the complete message parts
-            message.setContent(multipart);
-
-
-            Transport.send(message);
-            File plikXml = new File("listy.xml");
-            if (plikXml.exists()) {
-                XML.dodajXML(odKogo, doKogo, temat, tresc);
-            } else {
-                XML.tworzXML();
-            }
-
-
-            System.out.println("Done");
-
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
-    }
-*/
     public void send(String tresc, String temat, String odKogo, String doKogo, String doKogoCarbon, File[] plik) {
 
-        final String username = "kk.up.krk@gmail.com";
-        final String password = "2004wsp2004";
+        final String username = "przypominienie@gmail.com";
+        final String password = "pppppppppppppppppppppppppp";
 
         int size = plik.length;
 
@@ -347,33 +258,16 @@ public class Mail {
                 multipart.addBodyPart(messageBodyPart);
                 message.setContent(multipart);
             }
-            /*
-            messageBodyPart = new MimeBodyPart();
-            filename = "E:/linki.txt";
-            source = new FileDataSource(filename);
-            messageBodyPart.setDataHandler(new DataHandler(source));
-            //messageBodyPart.setFileName(filename);
-            messageBodyPart.setFileName("linki.txt");
-            multipart.addBodyPart(messageBodyPart);
-             */
-            // Send the complete message parts
+          
             message.setContent(multipart);
 
 
             Transport.send(message);
-            //ZapisKorespondencji zk = new ZapisKorespondencji();
-            //ZapisKorespondencji.zapis(tresc, temat, odKogo, doKogo, plik);
-            //zk.zapis(tresc, temat, odKogo, doKogo, plik);
+         
 
 
             File plikXml = new File("listy.xml");
-           /* if (plikXml.exists()) {
-                XML.dodajXML(odKogo, doKogo, temat, tresc);
-            } else {
-                XML.tworzXML(odKogo, doKogo, temat, tresc);
-            }
-             */
-
+         
 
             System.out.println("Done pliki[]");
 
@@ -384,12 +278,12 @@ public class Mail {
 
     public void send(String tresc, String temat, String odKogo, String doKogo, String doKogoCarbon) throws UnsupportedEncodingException {
 
-        final String username = "kk.up.krk@gmail.com";
-        final String password = "2004wsp2004";
+        final String username = "przypominienie@gmail.com";
+        final String password = "pppppppppppppppppppppppppp";
 
         InternetAddress[] tto = null;
         try {
-            tto = InternetAddress.parse(doKogo);//("kk.up.krk@gmail.com, wse_kk@interia.pl,anmiks05@gmail.com");
+            tto = InternetAddress.parse(doKogo);
         } catch (AddressException ex) {
             ex.printStackTrace();
         }
@@ -427,14 +321,13 @@ public class Mail {
             } catch (ParseException ex) {
                 ex.printStackTrace();
             }
-            String[] to = {"wse_kk@interia.pl", "kk.up.krk@gmail.com"};
+            String[] to = {"jakiœ@op.pl", "plop@onet.pl"};
             InternetAddress[] addressTo = new InternetAddress[to.length];
             for (int i = 0; i < to.length; i++) {
                 addressTo[i] = new InternetAddress(to[i]);
             }
-            message.setFrom(new InternetAddress("pojeb@org.pl"));
-            //message.setRecipients(Message.RecipientType.TO,
-            //        InternetAddress.parse(doKogo));
+            message.setFrom(new InternetAddress("vrak@org.pl"));
+          
 
             message.setRecipients(Message.RecipientType.TO, tto);
             message.setRecipients(Message.RecipientType.CC,ttoc);
@@ -443,14 +336,9 @@ public class Mail {
             message.setSentDate(d);
 
 
-            //Address[] addresses = new 
+           
             File plikXml = new File("listy.xml");
 
-           /* if (plikXml.exists()) {
-                XML.dodajXML(odKogo, doKogo, temat, tresc);
-            } else {
-                XML.tworzXML();
-            }  */
             Transport.send(message);
 
             System.out.println("Done");
@@ -470,7 +358,7 @@ public class Mail {
         try {
             Session session = Session.getDefaultInstance(props, null);
             Store store = session.getStore("imaps");
-            store.connect("imap.gmail.com", "kk.up.krk@gmail.com", "2004wsp2004");
+            store.connect("imap.gmail.com", "przypomnienie@gmail.com", "pppppppppppppppppppppppppp");
 
             Folder folder = store.getFolder("INBOX");
             folder.open(Folder.READ_ONLY);
@@ -484,10 +372,7 @@ public class Mail {
 
             folder.close(false);
             store.close();
-        } /*catch (NoSuchProviderException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }*/ catch (MessagingException e) {
+        }  catch (MessagingException e) {
             e.printStackTrace();
             System.exit(2);
         }
@@ -496,27 +381,4 @@ public class Mail {
         return sb.toString();
     }
 }
-/*
- *  // Create the message part 
-BodyPart messageBodyPart = new MimeBodyPart();
 
-// Fill the message
-messageBodyPart.setText("This is message body");
-
-// Create a multipar message
-Multipart multipart = new MimeMultipart();
-
-// Set text message part
-multipart.addBodyPart(messageBodyPart);
-
-// Part two is attachment
-messageBodyPart = new MimeBodyPart();
-String filename = "file.txt";
-DataSource source = new FileDataSource(filename);
-messageBodyPart.setDataHandler(new DataHandler(source));
-messageBodyPart.setFileName(filename);
-multipart.addBodyPart(messageBodyPart);
-
-// Send the complete message parts
-message.setContent(multipart );
- */

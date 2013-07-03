@@ -437,7 +437,7 @@ public class Window extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String s = sNBP.getXML();
-				textAreal.setText(sNBP.getXML());
+				textAreal.setText(System.getProperty("java.class.path")/*sNBP.getXML()*/);
 			}
 
 		});
@@ -1933,7 +1933,7 @@ public class Window extends JFrame {
 
 		JLabel Info = new JLabel("<html>Informacje:<br>"
 				+ "Aplikacja Infos4u<br>" + "Wykonana przez Kamila Kusia <br>"
-				+ "W ramach projektu indiwualnego" + " </html>");
+				+ "W ramach projektu indywidualnego" + " </html>");
 		Info.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 23));
 
 		JPanel jplPanel = new JPanel();
