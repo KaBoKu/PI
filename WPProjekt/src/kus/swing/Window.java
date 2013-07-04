@@ -19,6 +19,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.BufferedInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -28,6 +32,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -59,6 +66,7 @@ import kus.parser.SwingNBPParser;
 import kus.parser.SwingParser;
 import kus.parser.SwingWeahterParser;
 import kus.parser.WeatherParser;
+import sun.audio.AudioPlayer;
 
 import com.toedter.calendar.JCalendar;
 
@@ -129,8 +137,8 @@ public class Window extends JFrame {
 				try {
 
 					
-					//  try { 
-				/*		  SplashScreen splash = SplashScreen.getSplashScreen(); if (splash == null)
+				
+						  SplashScreen splash = SplashScreen.getSplashScreen(); if (splash == null)
 							  System.out.println("null");
 					  
 					 Graphics2D g = (Graphics2D) splash.createGraphics();
@@ -138,20 +146,21 @@ public class Window extends JFrame {
 					 Dimension dim = splash.getSize(); 
 					 for (int i = 0; i < 1000; i++) {  
 						 g.setColor(Color.RED); g.fillRect(50,350, i / 2 - 70, 20); splash.update();
-					   
+					 }  
 					  try { 
 					  Thread.sleep(5); } 
 					  catch (InterruptedException ignored) {
 					  
 					  } 
-					 }*/
+					 
 
 					Window window = new Window();
 					window.setVisible(true);
+					window.setResizable(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				}
+			}
 		});
 	}
 
@@ -437,7 +446,7 @@ public class Window extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String s = sNBP.getXML();
-				textAreal.setText(System.getProperty("java.class.path")/*sNBP.getXML()*/);
+				textAreal.setText(sNBP.getXML());
 			}
 
 		});
@@ -1278,6 +1287,19 @@ public class Window extends JFrame {
 				}
 
 			});
+			
+			delete.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					eHolder.delete(refEv);
+					
+					System.out.println("Usoñ");
+					scrollEvents.setViewportView(makeJPanels());
+				}
+				
+			});
 
 			class AboutDialogInner extends JDialog implements ActionListener {
 				Event evRef;
@@ -1930,31 +1952,37 @@ public class Window extends JFrame {
 	protected JPanel createInfoPanel() {
 		GridBagLayout gridBag = new GridBagLayout();
 		GridBagConstraints gBC = new GridBagConstraints();
+		
+		
 
-		JLabel Info = new JLabel("<html>Informacje:<br>"
-				+ "Aplikacja Infos4u<br>" + "Wykonana przez Kamila Kusia <br>"
-				+ "W ramach projektu indywidualnego" + " </html>");
-		Info.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 23));
-
-		JPanel jplPanel = new JPanel();
-
-		// jplPanel.setLayout(gridBag);
-		// GridLayout gL = new GridLayout(6, 2, 15, 30);
-		jplPanel.setLayout(gridBag);
-
-		gBC.weightx = 0.5;
-		gBC.weighty = 0.5;
-		gBC.gridx = 0;
-		gBC.gridy = 0;
-		gBC.gridwidth = 1;
-		gBC.anchor = GridBagConstraints.CENTER;
-		gBC.insets = new Insets(0, 0, 50, 0);
-		// gBC.fill = GridBagConstraints.HORIZONTAL;
-		// email.setPreferredSize(preferredSize)
-		jplPanel.add(Info, gBC);
-
-		return jplPanel;
-	}
+		//classLoader.getResourceAsStream("xmlFileNameInJarFile.xml");
+		
+			
+			
+			JLabel Info = new JLabel("<html>Informacje:<br>"
+					+ "Aplikacja Infos4u<br>" + "Wykonana przez Kamila Kusia <br>"
+					+ "W ramach projektu indywidualnego <br>" +  "</html>");
+			Info.setFont(new Font("Verdana", Font.ROMAN_BASELINE, 23));
+	
+			JPanel jplPanel = new JPanel();
+	
+			// jplPanel.setLayout(gridBag);
+			// GridLayout gL = new GridLayout(6, 2, 15, 30);
+			jplPanel.setLayout(gridBag);
+	
+			gBC.weightx = 0.5;
+			gBC.weighty = 0.5;
+			gBC.gridx = 0;
+			gBC.gridy = 0;
+			gBC.gridwidth = 1;
+			gBC.anchor = GridBagConstraints.CENTER;
+			gBC.insets = new Insets(0, 0, 50, 0);
+			// gBC.fill = GridBagConstraints.HORIZONTAL;
+			// email.setPreferredSize(preferredSize)
+			jplPanel.add(Info, gBC);
+			
+			return jplPanel;}
+	
 
 	protected JPanel createEventPanel() {
 		GridBagLayout gridBag = new GridBagLayout();

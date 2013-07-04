@@ -1,5 +1,6 @@
 package kus.eventy.decorator;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -42,9 +43,10 @@ public class SoundAlert extends AlertDecorator {
 		InputStream in;
 		try {
 
-			InputStream is = getClass().getResourceAsStream("Alarm.wav");
+			InputStream is = getClass().getResourceAsStream("ALARM.WAV");//"Alarm.wav");
+			 InputStream bufferedIn = new BufferedInputStream(is);
 			AudioInputStream audioInputStream = AudioSystem
-					.getAudioInputStream(is);
+					.getAudioInputStream(bufferedIn);
 			// in = new FileInputStream(new File("D:\\Alarm\\Alarm.wav"));
 			// AudioStream as = new AudioStream(in);
 			AudioPlayer.player.start(audioInputStream);

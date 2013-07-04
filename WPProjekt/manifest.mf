@@ -1,3 +1,4 @@
 Manifest-Version: 1.0
 Main-Class: kus.swing.Window
 SplashScreen-Image: images/Calendar1.jpg
+Class-Path: rescoures/Alarm.wav
